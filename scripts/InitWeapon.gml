@@ -12,7 +12,7 @@ switch(argument[2])
     }
     default:
     {
-        player.m_weapons[index].m_fireRate = 20;
+        player.m_weapons[index].m_fireRate = 10;
         player.m_weapons[index].m_type = WP_DEFAULT;
         player.m_weapons[index].m_ammo = -1;
         break;

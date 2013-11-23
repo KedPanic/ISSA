@@ -26,12 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>/// Constructor
-self.m_baseLife = 100;
-self.m_life = self.m_baseLife;
-self.m_shield = 100;
-self.m_fuel = 5;
+self.m_life = SHIP_BASELIFE;
+self.m_curLife = self.m_life;
+self.m_shield = SHIP_BASESHIELD;
+self.m_curShield = self.m_shield;
 
-self.m_time = 0;
+//temporary
+self.m_shieldColor = make_color_rgb(0,145,180);
+self.m_shieldVariation = 0;
+
+InitShip(self);
+
+self.m_yOffset = 0;
 </string>
           </argument>
         </arguments>
@@ -54,10 +60,14 @@ self.m_time = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var delta = delta_time / 1000000; // convert delta time nanoseconds to seconds.
-
-self.m_time += (delta_time / 1000);
-self.y = 512 + (sin((self.m_time * pi * (delta * 5)) / 180) * 5);
+            <string>self.y = room_height/2 + 10*(sin(self.m_yOffset));
+self.m_yOffset+=0.1;
+self.m_shieldVariation+=0.1;
+self.m_curShield+=1/30;
+if(self.m_curShield &gt; self.m_shield)
+{
+    self.m_curShield = self.m_shield;
+}
 </string>
           </argument>
         </arguments>
@@ -87,9 +97,13 @@ draw_sprite(ship_background, 0, self.x, self.y);
 
 var recx = self.x - 21;
 var recy = self.y + 53;
-draw_rectangle_color(recx, recy, recx + (57 * (self.m_baseLife / self.m_life)), recy + 15, c_green, c_green, c_green, c_green, false);
+draw_rectangle_color(recx, recy, recx + (57 * (self.m_curLife / self.m_life)), recy + 15, c_green, c_green, c_green, c_green, false);
 
 draw_self();
+
+draw_set_alpha(0.5*self.m_curShield/self.m_shield);
+draw_circle_color(self.x,self.y,self.sprite_width/2+10+3*cos(self.m_shieldVariation),self.m_shieldColor,self.m_shieldColor,false);
+draw_set_alpha(1);
 </string>
           </argument>
         </arguments>

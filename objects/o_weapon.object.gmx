@@ -57,13 +57,17 @@ self.m_player = INVALID_PLAYER;
 {
     if(self.m_isFiring ==true)
     {
-        if(self.m_curFireRate==0) // weapon can fire
+        if(self.m_curFireRate&lt;=0) // weapon can fire
         {
             switch(self.m_type)
             {
                 case WP_DEFAULT:
                 {
-                    //b = instance_create
+                    b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_default);
+                    b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                    b.m_player = self.m_player;
+                    b.m_state = "ready";
+                    show_debug_message("Bullet fired with Angle = "+string(b.m_direction));
                     break;
                 }
                 default:
@@ -74,7 +78,10 @@ self.m_player = INVALID_PLAYER;
             self.m_curFireRate = self.m_fireRate;
         }
     }
-    self.m_curFireRate -= 1;
+    if(self.m_curFireRate&gt;0)
+    {
+        self.m_curFireRate -= 1;
+    }
 }
 </string>
           </argument>

@@ -22,6 +22,10 @@ if(gamepad_button_check(player.m_controller,gp_shoulderrb))
 {
     player.m_weapons[player.m_curSlot].m_isFiring = true;
 }
+else
+{
+    player.m_weapons[player.m_curSlot].m_isFiring = false;
+}
 
 //Slot 1 Input
 if(gamepad_button_check(player.m_controller,gp_face3))

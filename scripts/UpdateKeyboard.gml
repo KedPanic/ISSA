@@ -19,6 +19,10 @@ if(keyboard_check_direct(vk_space))
 {
     player.m_weapons[player.m_curSlot].m_isFiring = true;
 }
+else
+{
+    player.m_weapons[player.m_curSlot].m_isFiring = false;
+}
 
 //Slot 1 Input
 if(keyboard_check_direct(ord("V")))
@@ -37,4 +41,3 @@ else if((keyboard_check_direct(ord("N")))&&(player.m_slots[2]!=WP_NONE))
     show_debug_message("Slot 2");
     player.m_curSlot = 2;
 }
-
