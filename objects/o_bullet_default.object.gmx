@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>self.m_damage = 0;
-self.m_speed = 0;
+            <string>self.m_damage = 1;
+self.m_speed = 5;
 self.m_direction = 0;
 self.m_player = INVALID_PLAYER;
 self.m_state = "created";
@@ -57,10 +57,16 @@ self.m_state = "created";
 {
     case "ready":
     {
+        motion_set(self.m_direction,self.m_speed);
+        self.m_state = "fired";
         break;
     }
     default:
     {
+        if((self.x&lt;0)||(self.x&gt;room_width)||(self.y&gt;room_height)|(self.y&lt;0))
+        {
+            instance_destroy();
+        }
         break;
     }
 }
@@ -81,5 +87,8 @@ self.m_state = "created";
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints/>
+  <PhysicsShapePoints>
+    <point>0,0</point>
+    <point>4,4</point>
+  </PhysicsShapePoints>
 </object>
