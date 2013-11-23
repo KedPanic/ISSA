@@ -90,8 +90,25 @@ if(self.sound == 0)
     }
 }
 
+// waiting for press start event.
+var pressStart = false;
+if( keyboard_check_pressed(vk_enter) )
+{
+    pressStart = true;
+}
+else
+{
+    for(var index = 0; index &lt; 4; index++)
+    {
+        if(gamepad_is_connected(index) and gamepad_button_check_pressed(index, gp_start))        
+        {  
+            pressStart = true;
+        }
+    }
+}
+
 // check if the intro is finish
-if((((array_length_1d(self.scenario) - 1) * 35) + self.posy) &lt; 0 or keyboard_check_pressed(vk_enter))
+if((((array_length_1d(self.scenario) - 1) * 35) + self.posy) &lt; 0 or pressStart)
 {
     instance_destroy();
     room_goto(r_title);
