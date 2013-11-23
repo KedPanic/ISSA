@@ -29,6 +29,16 @@
 self.m_currentTime = 0;
 self.m_stageTime = 5 * 60 * 1000; /// 5 minutes in milliseconds.
 
+self.m_spawnRateMin = 60;      // min amount of time before an enemy is spawned (30 &lt;=&gt; 1 second)
+self.m_spawnRateMax = 120;     // max amount of time before an enemy is spawned (30 &lt;=&gt; 1 second)
+self.m_curSpawnRate = self.m_spawnRateMin; 
+self.m_enemyTypes = 1;         // which types of enemies are being spawned during the current level    
+self.m_maxEnemies = 10;         // how many enemies are being spawned during the current level
+self.m_curEnemies = 0;       // how many enemies have already been spawned during the current level
+
+InitLevel(self);
+
+
 // initialize player.
 for(var index = 0; index &lt; MAX_PLAYER; index++)
 {
@@ -81,6 +91,32 @@ for(var index = 0; index &lt; MAX_PLAYER; index++)
 
 // check if a new player are requested.
 CheckNewPlayer();
+
+// Update enemies generation
+if(self.m_curSpawnRate &lt;=0)
+{
+    if(self.m_curEnemies &lt; self.m_maxEnemies)
+    {
+        var r = irandom_range(1,self.m_enemyTypes);
+        switch(r)
+        {
+            default:
+            {  
+                var radius = room_width;
+                var rAngle = irandom_range(0,360)*pi/180;
+                s = instance_create(radius*cos(rAngle),radius*sin(rAngle),o_kamishark);
+                break;
+            }
+        }
+        self.m_curSpawnRate = irandom_range(self.m_spawnRateMin,self.m_spawnRateMax);
+        self.m_curEnemies++;
+        //show_debug_message("Shark n° "+string(self.m_curEnemies)+" will pop in "+string(self.m_curSpawnRate));
+    }
+}
+else
+{
+    self.m_curSpawnRate--;
+}
 
 // check if we finish the stage.
 self.m_currentTime += delta_time / 1000;

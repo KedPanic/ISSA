@@ -64,10 +64,12 @@
       <script>scripts\UpdateGamepad.gml</script>
       <script>scripts\InitPlayer.gml</script>
       <script>scripts\InitWeapon.gml</script>
+      <script>scripts\InitShip.gml</script>
     </scripts>
     <scripts name="Game">
       <script>scripts\CheckNewPlayer.gml</script>
       <script>scripts\CreatePlayer.gml</script>
+      <script>scripts\InitLevel.gml</script>
     </scripts>
   </scripts>
   <shaders name="shaders">
@@ -101,7 +103,7 @@
     </objects>
     <object>objects\o_test</object>
     <objects name="Enemies">
-      <object>objects\object18</object>
+      <object>objects\o_kamishark</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -110,7 +112,15 @@
     <room>rooms\r_game</room>
     <room>rooms\r_intro</room>
   </rooms>
-  <constants number="15">
+  <constants number="23">
+    <constant name="SHIP_BASESHIELD">10</constant>
+    <constant name="SHIP_BASELIFE">25</constant>
+    <constant name="SHARK_SCORE">5</constant>
+    <constant name="SHARK_LIFE">3</constant>
+    <constant name="SHARK_DAMAGE">5</constant>
+    <constant name="SHARK_SPEED">5</constant>
+    <constant name="B_DAMAGE">1</constant>
+    <constant name="B_SPEED">5</constant>
     <constant name="SLOTS_MAX">3</constant>
     <constant name="WP_TRIPLE">1</constant>
     <constant name="WP_DEFAULT">0</constant>
