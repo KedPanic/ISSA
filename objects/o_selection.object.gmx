@@ -25,8 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Constructor
-self.time  = 0;
+            <string>/// Constructor.
+
+// true if player are ready.
+self.m_players[0] = false;
+self.m_players[1] = false;
+self.m_players[2] = false;
+self.m_players[3] = false;
+
+self.m_nbReady = 0;
 </string>
           </argument>
         </arguments>
@@ -49,15 +56,31 @@ self.time  = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Update the menu
-self.time += 0.01 * delta_time;
-PressStart();
+            <string>for(var index = 0; index &lt; MAX_PLAYER; index++)
+{
+    var player = g_playerManager.m_players[index];
+    if(player != INVALID_PLAYER)
+    {
+        self.players[index] = UpdateMenuInput(player);
+        if(self.players[index])
+        {
+            self.m_nbReady++;
+        }
+    }    
+}
+
+// goto next room.
+if(self.m_nbReady == g_playerManager.m_nbPlayers)
+{
+    room_goto(r_game);
+}
+
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -74,8 +97,52 @@ PressStart();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw the menu
-draw_text_color(512, 512, "press start", c_yellow, c_yellow, c_yellow, c_yellow, sin(self.time) + 1.0);
+            <string>/// draw the menu
+
+// players
+for(var index = 0; index &lt; MAX_PLAYER; index++)
+{
+    var player = g_playerManager.m_players[index];
+    if(player != INVALID_PLAYER)
+    {
+        var maskIndex = shader_get_sampler_index(ColourMap, "u_sMask");
+        var mask = sprite_get_texture(s_player1_mask, 0);
+
+        var colourParams = shader_get_uniform(ColourMap, "u_vColour");
+
+        var red = color_get_red(g_playerManager.m_colors[player.m_color]) / 255;
+        var green = color_get_green(g_playerManager.m_colors[player.m_color]) / 255;
+        var blue = color_get_blue(g_playerManager.m_colors[player.m_color]) / 255;
+        shader_set(ColourMap);
+        shader_set_uniform_f(colourParams, red, green, blue, 1.0);
+        texture_set_stage(maskIndex, mask);
+        draw_sprite(s_player1, 0, 80, 200);
+        shader_reset();
+    }
+}
+
+// background
+draw_sprite(s_menu_selection, 0, 0, 0);
+
+// draw cursor.
+// color: 198, 570
+// eyebrow: 198, 
+for(var index = 0; index &lt; MAX_PLAYER; index++)
+{
+    var player = g_playerManager.m_players[index];
+    if(player != INVALID_PLAYER)
+    {
+        if(player.m_eyebrow == INVALID_EYEBROW)
+        {
+            draw_sprite_ext(s_selection, 0, 198 + player.m_color * 84, 570, 1, 1, 0, c_white, 1);
+        }
+        else
+        {
+            draw_sprite_ext(s_selection, 0, 198 + player.m_eyebrow * 84, 660, 1, 1, 0, c_white, 1);        
+        }
+    }    
+}
+
 </string>
           </argument>
         </arguments>

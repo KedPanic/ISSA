@@ -6,7 +6,7 @@ if( keyboard_check_pressed(vk_enter) )
 
     // goto next room    
     instance_destroy();    
-    room_goto(r_game);
+    room_goto(r_selection);
 }
 else
 {
@@ -19,7 +19,7 @@ else
                 
             // goto next room
             instance_destroy();            
-            room_goto(r_game);
+            room_goto(r_selection);
         }
     }
 }
