@@ -13,3 +13,20 @@ angles[3] = arctan2(1, 1);
 player.m_drone.m_angle = angles[player.m_id];
 player.m_drone.x = 512 + (cos(player.m_drone.m_angle) * ((sprite_get_width(ship) / 2) + sprite_get_width(s_drone)));
 player.m_drone.y = 512 + (sin(player.m_drone.m_angle) * ((sprite_get_height(ship) / 2) + sprite_get_height(s_drone)));
+
+for(i=0; i<SLOTS_MAX; i++)
+{
+    switch(player.m_slots[i])
+    {
+        case WP_DEFAULT:
+        {
+            player.m_weapons[i] = instance_create(0,0,o_weapon);
+            InitWeapon(player,i,WP_DEFAULT);
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+}

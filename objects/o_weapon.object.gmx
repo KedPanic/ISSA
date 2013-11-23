@@ -25,9 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>self.m_type = "default";
+            <string>self.m_type = WP_DEFAULT;
 self.m_fireRate = 20; // the higher, the lower the actual fire rate
 self.m_curFireRate = 0;
+self.m_ammo = -1;
+self.m_isFiring = false;
 self.m_player = INVALID_PLAYER;
 </string>
           </argument>
@@ -53,20 +55,26 @@ self.m_player = INVALID_PLAYER;
             <kind>1</kind>
             <string>if(self.m_player!=INVALID_PLAYER)
 {
-    if(self.m_player.m_isFiring ==true)
+    if(self.m_isFiring ==true)
     {
         if(self.m_curFireRate==0) // weapon can fire
         {
             switch(self.m_type)
             {
+                case WP_DEFAULT:
+                {
+                    //b = instance_create
+                    break;
+                }
                 default:
                 {
-                    
                     break;
                 }
             }
+            self.m_curFireRate = self.m_fireRate;
         }
     }
+    self.m_curFireRate -= 1;
 }
 </string>
           </argument>
