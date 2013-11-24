@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>/// Constructor
 self.m_angle    = -pi / 2;
-self.m_color    = random(NB_COLORS);    ///&lt; color index.
+self.m_color    = 0;
 self.m_speed    = 0.0001;
 self.m_move     = 0;
 </string>
@@ -78,10 +78,22 @@ self.y = 512 + (sin(self.m_angle) * ((sprite_get_height(ship) / 2) + sprite_get_
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// draw !
-draw_circle_color(self.x, self.y, sprite_get_width(s_drone) / 2 , g_playerManager.m_colors[self.m_color], g_playerManager.m_colors[self.m_color], false);
+            <string>/// draw !     
+var maskIndex = shader_get_sampler_index(ColourMap, "u_sMask");
+var mask = sprite_get_texture(s_drone_mask, 0);
 
+var colourParams = shader_get_uniform(ColourMap, "u_vColour");
+
+var red = color_get_red(g_playerManager.m_colors[self.m_color]) / 255;
+var green = color_get_green(g_playerManager.m_colors[self.m_color]) / 255;
+var blue = color_get_blue(g_playerManager.m_colors[self.m_color]) / 255;
+
+shader_set(ColourMap);
+shader_set_uniform_f(colourParams, red, green, blue, 1.0);
+texture_set_stage(maskIndex, mask);
 draw_sprite_ext(s_drone, 0, self.x, self.y, 1, 1, ((-self.m_angle - pi / 2)  * 180) / pi, c_white, 1);
+shader_reset();
+
 </string>
           </argument>
         </arguments>
