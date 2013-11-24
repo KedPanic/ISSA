@@ -108,6 +108,7 @@
     </objects>
     <objects name="Enemies">
       <object>objects\o_kamishark</object>
+      <object>objects\o_drunkshark</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -123,7 +124,7 @@
     <constant name="SHARK_SCORE">5</constant>
     <constant name="SHARK_LIFE">3</constant>
     <constant name="SHARK_DAMAGE">5</constant>
-    <constant name="SHARK_SPEED">5</constant>
+    <constant name="SHARK_SPEED">3</constant>
     <constant name="B_DAMAGE">1</constant>
     <constant name="B_SPEED">5</constant>
     <constant name="SLOTS_MAX">3</constant>

@@ -6,8 +6,8 @@ switch(g_gameManager.m_curLevel)
     {
         g.m_spawnRateMin = 60;
         g.m_spawnRateMax = 120;
-        g.m_enemyTypes = 1;
-        g.m_maxEnemies = 10;
+        g.m_enemyTypes = 2;
+        g.m_maxEnemies = 30;
 
         break;
     }

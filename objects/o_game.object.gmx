@@ -100,17 +100,33 @@ if(self.m_curSpawnRate &lt;=0)
         var r = irandom_range(1,self.m_enemyTypes);
         switch(r)
         {
+            case 2:
+            {  
+                var radius = 1000;//sqrt(power(room_width,2)*2);
+                var rAngle = irandom_range(0,360)*pi/180;
+                s = instance_create(radius*cos(rAngle),radius*sin(rAngle),o_drunkshark);
+                //show_debug_message("Shark spawned at ("+string(s.x)+","+string(s.y)+") with angle = "+string(rAngle));
+                break;
+            }
+            case 1:
+            {  
+                var radius = 1000;//sqrt(power(room_width,2)*2);
+                var rAngle = irandom_range(0,360)*pi/180;
+                s = instance_create(radius*cos(rAngle),radius*sin(rAngle),o_drunkshark);
+                //show_debug_message("Shark spawned at ("+string(s.x)+","+string(s.y)+") with angle = "+string(rAngle));
+                break;
+            }
             default:
             {  
-                var radius = room_width;
+                var radius = sqrt(power(room_width,2)*2);
                 var rAngle = irandom_range(0,360)*pi/180;
                 s = instance_create(radius*cos(rAngle),radius*sin(rAngle),o_kamishark);
+                //show_debug_message("Shark spawned at ("+string(s.x)+","+string(s.y)+") with angle = "+string(rAngle));
                 break;
             }
         }
         self.m_curSpawnRate = irandom_range(self.m_spawnRateMin,self.m_spawnRateMax);
         self.m_curEnemies++;
-        //show_debug_message("Shark n° "+string(self.m_curEnemies)+" will pop in "+string(self.m_curSpawnRate));
     }
 }
 else
