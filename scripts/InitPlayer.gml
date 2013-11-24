@@ -16,17 +16,5 @@ player.m_drone.y = 512 + (sin(player.m_drone.m_angle) * ((sprite_get_height(ship
 
 for(i=0; i<SLOTS_MAX; i++)
 {
-    switch(player.m_slots[i])
-    {
-        case WP_DEFAULT:
-        {
-            player.m_weapons[i] = instance_create(0,0,o_weapon);
-            InitWeapon(player,i,WP_DEFAULT);
-            break;
-        }
-        default:
-        {
-            break;
-        }
-    }
+    InitWeapon(player,i);
 }
