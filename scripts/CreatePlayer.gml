@@ -10,6 +10,11 @@ if(controller != KEYBOARD)
 {
     g_playerManager.m_gamepads[controller] = player.m_id;
 }
+else
+{
+    assert(g_playerManager.m_keyboard == INVALID_GAMEPAD, "keyboard is already setted");
+    g_playerManager.m_keyboard = player.m_id;
+}
 
 g_playerManager.m_players[player.m_id] = player;
 g_playerManager.m_nbPlayers++;
