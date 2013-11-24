@@ -58,6 +58,7 @@
     <script>scripts\PressStart.gml</script>
     <scripts name="Menus">
       <script>scripts\UpdateMenuInput.gml</script>
+      <script>scripts\MenuCheckNewPlayer.gml</script>
     </scripts>
     <scripts name="Music">
       <script>scripts\PlayMusic.gml</script>
