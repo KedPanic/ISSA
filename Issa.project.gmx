@@ -106,7 +106,6 @@
       <object>objects\o_win</object>
       <object>objects\o_selection</object>
     </objects>
-    <object>objects\o_test</object>
     <objects name="Enemies">
       <object>objects\o_kamishark</object>
     </objects>
