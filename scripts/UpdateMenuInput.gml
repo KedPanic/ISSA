@@ -1,5 +1,7 @@
 // check if player pushed left
 var player = argument[0];
+var selection = argument[1];
+var index = argument[2];
 
 var value = 0;
 var validate = false;
@@ -25,21 +27,35 @@ if(player.m_controller == KEYBOARD)
     }
 }
 else
-{
-    if(gamepad_axis_value(player.m_controller, gp_axislh) < -DEAD_ZONE)
+{    
+    if(gamepad_axis_value(player.m_controller, gp_axislh) < -DEAD_ZONE or gamepad_button_check_pressed(player.m_controller, gp_padl))
     {
-        value = -1;
+        if(!selection.m_player_lstick_on[index])
+        {
+            value = -1;
+        }
+        
+        selection.m_player_lstick_on[index] = true;        
     }
-    else if(gamepad_axis_value(player.m_controller, gp_axislh) > DEAD_ZONE)
+    else if(gamepad_axis_value(player.m_controller, gp_axislh) > DEAD_ZONE or gamepad_button_check_pressed(player.m_controller, gp_padr))
     {
-        value = 1;
+        if(!selection.m_player_lstick_on[index])
+        {
+            value = 1;
+        }
+        
+        selection.m_player_lstick_on[index] = true;
+    }
+    else
+    {
+        selection.m_player_lstick_on[index] = false;
     }
     
-    if(gamepad_button_check_pressed(player.m_controller, gp_padd))
+    if(gamepad_button_check_pressed(player.m_controller, gp_face1))
     {
         validate = true;
     }
-    if(gamepad_button_check_pressed(player.m_controller, gp_padr))
+    if(gamepad_button_check_pressed(player.m_controller, gp_face2))
     {
         cancel = true;
     }
