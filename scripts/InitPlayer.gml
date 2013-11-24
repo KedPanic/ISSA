@@ -2,6 +2,7 @@
 var player = argument[0];
 
 player.m_drone = instance_create(0, 0, o_drone);
+player.m_drone.m_color = player.m_color;
         
 // set the position.
 var angles;

@@ -47,7 +47,7 @@ else
 
 if(player.m_eyebrow == INVALID_EYEBROW)
 {
-    if(player.m_color + value >= 0 and player.m_color + value < NB_COLORS - 1)
+    if(player.m_color + value >= 0 and player.m_color + value < NB_COLORS)
     {
         player.m_color += value;
     }        
@@ -59,7 +59,7 @@ if(player.m_eyebrow == INVALID_EYEBROW)
 }
 else
 {
-    if(player.m_eyebrow + value >= 0 and player.m_eyebrow + value < NB_EYEBROWS - 1)
+    if(player.m_eyebrow + value >= 0 and player.m_eyebrow + value < NB_EYEBROWS)
     {
         player.m_eyebrow += value;
     }

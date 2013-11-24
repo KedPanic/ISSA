@@ -34,6 +34,16 @@ self.m_players[2] = false;
 self.m_players[3] = false;
 
 self.m_nbReady = 0;
+
+// eyebrows.
+self.m_eyebrows[0] = s_eyebrow_0;
+self.m_eyebrows[1] = s_eyebrow_1;
+self.m_eyebrows[2] = s_eyebrow_2;
+self.m_eyebrows[3] = s_eyebrow_3;
+self.m_eyebrows[4] = s_eyebrow_4;
+self.m_eyebrows[5] = s_eyebrow_5;
+self.m_eyebrows[6] = s_eyebrow_6;
+self.m_eyebrows[7] = s_eyebrow_7;
 </string>
           </argument>
         </arguments>
@@ -56,7 +66,9 @@ self.m_nbReady = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for(var index = 0; index &lt; MAX_PLAYER; index++)
+            <string>MenuCheckNewPlayer();
+
+for(var index = 0; index &lt; MAX_PLAYER; index++)
 {
     var player = g_playerManager.m_players[index];
     if(player != INVALID_PLAYER)
@@ -66,7 +78,7 @@ self.m_nbReady = 0;
         {
             self.m_nbReady++;
         }
-    }    
+    }
 }
 
 // goto next room.
@@ -105,6 +117,8 @@ for(var index = 0; index &lt; MAX_PLAYER; index++)
     var player = g_playerManager.m_players[index];
     if(player != INVALID_PLAYER)
     {
+        var offsetx = 220 * index;
+        
         var maskIndex = shader_get_sampler_index(ColourMap, "u_sMask");
         var mask = sprite_get_texture(s_player1_mask, 0);
 
@@ -116,8 +130,13 @@ for(var index = 0; index &lt; MAX_PLAYER; index++)
         shader_set(ColourMap);
         shader_set_uniform_f(colourParams, red, green, blue, 1.0);
         texture_set_stage(maskIndex, mask);
-        draw_sprite(s_player1, 0, 80, 200);
+        draw_sprite(s_player1, 0, 55 + offsetx, 272);
         shader_reset();
+        
+        if(player.m_eyebrow != INVALID_EYEBROW)
+        {
+            draw_sprite(self.m_eyebrows[player.m_eyebrow], 0, 146 + offsetx, 366);
+        }
     }
 }
 
@@ -132,13 +151,33 @@ for(var index = 0; index &lt; MAX_PLAYER; index++)
     var player = g_playerManager.m_players[index];
     if(player != INVALID_PLAYER)
     {
+        // config flip.
+        var flipx = 1;
+        if(index % 2)
+        {
+            flipx = -1;
+        }
+        var flipy = 1;
+        if(index &gt; 1)
+        {
+            flipy = -1;
+        }
+        
+        // config offset.
+        var offsetx = 75 * (index % 2);
+        var offsety = 0;
+        if(index &gt; 1)
+        {
+            offsety = 75;
+        }
+        
         if(player.m_eyebrow == INVALID_EYEBROW)
         {
-            draw_sprite_ext(s_selection, 0, 198 + player.m_color * 84, 570, 1, 1, 0, c_white, 1);
+            draw_sprite_ext(s_selection, 0, offsetx + 198 + player.m_color * 84, offsety + 570, flipx, flipy, 0, c_white, 1);
         }
         else
         {
-            draw_sprite_ext(s_selection, 0, 198 + player.m_eyebrow * 84, 660, 1, 1, 0, c_white, 1);        
+            draw_sprite_ext(s_selection, 0, offsetx + 198 + player.m_eyebrow * 84, offsety + 660, flipx, flipy, 0, c_white, 1);        
         }
     }    
 }
