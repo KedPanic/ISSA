@@ -37,9 +37,35 @@ self.m_curSlot = 0;
 for(i=0; i&lt;SLOTS_MAX; i++)
 {
     self.m_slots[i] = WP_NONE;
-    self.m_weapons[i] = WP_NONE;
+    self.m_weapons[i] = instance_create(0,0,o_weapon);
+    //self.m_weapons[i].m_player = g_playerManager.m_players[index];
 }
 self.m_slots[0]=WP_DEFAULT;
+//self.m_slots[1]=WP_TRIPLE;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="96">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>self.m_slots[1] = WP_TRIPLE;
+InitWeapon(g_playerManager.m_players[self.m_id],1);
 </string>
           </argument>
         </arguments>
