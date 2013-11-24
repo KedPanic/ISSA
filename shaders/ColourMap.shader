@@ -31,7 +31,7 @@ void main()
 {
     vec4 diffuseColor = texture2D(gm_BaseTexture, v_vTexcoord);
     vec4 maskColor = texture2D(u_sMask, v_vTexcoord);
-    vec4 colour = diffuseColor + maskColor * u_vColour;
+    vec4 colour = (diffuseColor * (1.0 - maskColor)) + (maskColor * u_vColour);
     colour.a = diffuseColor.a;
            
     gl_FragColor = colour;

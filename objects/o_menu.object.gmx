@@ -26,19 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>/// Constructor
-//////////////////////////////////////////
-// Declare global state variables.
-//////////////////////////////////////////
-global.MENU_STATE_TITLE = 0;
-global.MENU_STATE_MAIN  = 1;
-global.MENU_STATE_CHOOSE_COLOR = 2;
-global.MENU_STATE_CHOOSE_EYEBROW = 3;
-
-
-//////////////////////////////////////////
-// Declare self variables.
-//////////////////////////////////////////
-self.state = global.MENU_STATE_TITLE;
 self.time  = 0;
 </string>
           </argument>
@@ -63,24 +50,8 @@ self.time  = 0;
           <argument>
             <kind>1</kind>
             <string>/// Update the menu
-switch(self.state)
-{
-case global.MENU_STATE_TITLE:
-    self.time += 0.01 * delta_time;
-    PressStart();    
-    break;
-    
-case global.MENU_STATE_MAIN:
-//    UpdateMainMenu();
-    break;
-    
-case global.MENU_STATE_CHOOSE_COLOR:
-    break;
-    
-case global.MENU_STATE_CHOOSE_EYEBROW:
-    break;
-}
-
+self.time += 0.01 * delta_time;
+PressStart();
 </string>
           </argument>
         </arguments>
@@ -103,24 +74,8 @@ case global.MENU_STATE_CHOOSE_EYEBROW:
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Update the menu
-switch(self.state)
-{
-case global.MENU_STATE_TITLE:
-    draw_text_color(512, 512, "press start", c_yellow, c_yellow, c_yellow, c_yellow, sin(self.time) + 1.0);
-    break;
-    
-case global.MENU_STATE_MAIN:
-//    UpdateMainMenu();
-    break;
-    
-case global.MENU_STATE_CHOOSE_COLOR:
-    break;
-    
-case global.MENU_STATE_CHOOSE_EYEBROW:
-    break;
-}
-
+            <string>/// Draw the menu
+draw_text_color(512, 512, "press start", c_yellow, c_yellow, c_yellow, c_yellow, sin(self.time) + 1.0);
 </string>
           </argument>
         </arguments>

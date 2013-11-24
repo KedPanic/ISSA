@@ -47,20 +47,16 @@ self.m_eyebrows[4] = 0;
 self.m_eyebrows[5] = 0;
 self.m_eyebrows[6] = 0;
 self.m_eyebrows[7] = 0;
-self.m_eyebrows[8] = 0;
-self.m_eyebrows[9] = 0;
 
 // colors
-self.m_colors[0] = c_yellow;
-self.m_colors[1] = c_white;
-self.m_colors[2] = c_black;
-self.m_colors[3] = c_maroon;
-self.m_colors[4] = c_green;
-self.m_colors[5] = c_purple;
-self.m_colors[6] = c_aqua;
-self.m_colors[7] = c_orange;
-self.m_colors[8] = c_teal;
-self.m_colors[9] = c_lime;
+self.m_colors[0] = make_color_rgb(13, 103, 85);
+self.m_colors[1] = make_color_rgb(224, 119, 176);
+self.m_colors[2] = make_color_rgb(29, 109, 176);
+self.m_colors[3] = make_color_rgb(255, 169, 2);
+self.m_colors[4] = make_color_rgb(142, 235, 42);
+self.m_colors[5] = make_color_rgb(234, 4, 4);
+self.m_colors[6] = make_color_rgb(91, 10, 148);
+self.m_colors[7] = make_color_rgb(34, 57, 194);
 
 </string>
           </argument>
