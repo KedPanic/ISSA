@@ -52,6 +52,8 @@
       <sprite>sprites\s_b_play_h</sprite>
       <sprite>sprites\s_menu_selection</sprite>
       <sprite>sprites\s_selection</sprite>
+      <sprite>sprites\s_player1</sprite>
+      <sprite>sprites\s_player1_mask</sprite>
       <sprites name="eyebrows">
         <sprite>sprites\s_eyebrow_0</sprite>
         <sprite>sprites\s_eyebrow_6</sprite>
@@ -75,6 +77,8 @@
       <sprite>sprites\s_press_start_01</sprite>
       <sprite>sprites\s_press_start_02</sprite>
     </sprites>
+    <sprite>sprites\s_diffuse</sprite>
+    <sprite>sprites\s_mask</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
