@@ -4,10 +4,10 @@ switch(g_gameManager.m_curLevel)
 {
     default:
     {
-        g.m_spawnRateMin = 60;
-        g.m_spawnRateMax = 120;
+        g.m_spawnRateMin = 1;
+        g.m_spawnRateMax = 150;
         g.m_enemyTypes = 2;
-        g.m_maxEnemies = 30;
+        g.m_maxEnemies = 0;
 
         break;
     }

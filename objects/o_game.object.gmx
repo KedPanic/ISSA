@@ -36,6 +36,8 @@ self.m_enemyTypes = 1;         // which types of enemies are being spawned durin
 self.m_maxEnemies = 10;         // how many enemies are being spawned during the current level
 self.m_curEnemies = 0;       // how many enemies have already been spawned during the current level
 
+self.m_spawnRadius = 1000;//sqrt(power(room_width/2,2)*2);  // how far from the ship Sharks are being spawned?
+
 InitLevel(self);
 
 
@@ -98,33 +100,7 @@ if(self.m_curSpawnRate &lt;=0)
     if(self.m_curEnemies &lt; self.m_maxEnemies)
     {
         var r = irandom_range(1,self.m_enemyTypes);
-        switch(r)
-        {
-            case 2:
-            {  
-                var radius = 1000;//sqrt(power(room_width,2)*2);
-                var rAngle = irandom_range(0,360)*pi/180;
-                s = instance_create(radius*cos(rAngle),radius*sin(rAngle),o_drunkshark);
-                //show_debug_message("Shark spawned at ("+string(s.x)+","+string(s.y)+") with angle = "+string(rAngle));
-                break;
-            }
-            case 1:
-            {  
-                var radius = 1000;//sqrt(power(room_width,2)*2);
-                var rAngle = irandom_range(0,360)*pi/180;
-                s = instance_create(radius*cos(rAngle),radius*sin(rAngle),o_drunkshark);
-                //show_debug_message("Shark spawned at ("+string(s.x)+","+string(s.y)+") with angle = "+string(rAngle));
-                break;
-            }
-            default:
-            {  
-                var radius = sqrt(power(room_width,2)*2);
-                var rAngle = irandom_range(0,360)*pi/180;
-                s = instance_create(radius*cos(rAngle),radius*sin(rAngle),o_kamishark);
-                //show_debug_message("Shark spawned at ("+string(s.x)+","+string(s.y)+") with angle = "+string(rAngle));
-                break;
-            }
-        }
+        SpawnShark(self.m_spawnRadius,r);
         self.m_curSpawnRate = irandom_range(self.m_spawnRateMin,self.m_spawnRateMax);
         self.m_curEnemies++;
     }
@@ -141,6 +117,121 @@ if(self.m_currentTime &gt; self.m_stageTime)
     // end of the level.
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="101">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>SpawnShark(self.m_spawnRadius,5);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="100">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>SpawnShark(self.m_spawnRadius,4);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="99">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>SpawnShark(self.m_spawnRadius,3);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="98">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>SpawnShark(self.m_spawnRadius,2);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="97">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>SpawnShark(self.m_spawnRadius,1);
 </string>
           </argument>
         </arguments>
