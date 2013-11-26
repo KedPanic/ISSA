@@ -44,6 +44,7 @@
       <sprite>sprites\s_bullet_hole</sprite>
       <sprite>sprites\s_bullet_hole_att_mask</sprite>
       <sprite>sprites\s_bullet_blob</sprite>
+      <sprite>sprites\s_bullet_smartbomb</sprite>
     </sprites>
     <sprites name="Enemies">
       <sprite>sprites\s_shark_blue</sprite>
@@ -135,6 +136,7 @@
       <object>objects\o_bullet_mine</object>
       <object>objects\o_bullet_hole</object>
       <object>objects\o_bullet_blob</object>
+      <object>objects\o_bullet_smartbomb</object>
     </objects>
     <objects name="Menus">
       <object>objects\o_b_play</object>

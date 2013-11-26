@@ -5,6 +5,13 @@ if(player.m_slots[index]!=WP_NONE)
 {
     switch(player.m_slots[index])
     {
+        case WP_SMARTBOMB:
+        {
+            player.m_weapons[index].m_fireRate = 30;
+            player.m_weapons[index].m_type = WP_SMARTBOMB;
+            player.m_weapons[index].m_ammo = 1;
+            break;
+        }
         case WP_BLOB:
         {
             player.m_weapons[index].m_fireRate = WP_FIRERATE;
