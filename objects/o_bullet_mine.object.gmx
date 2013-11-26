@@ -28,6 +28,7 @@
             <string>self.m_damage = WP_DAMAGE;
 self.m_speed = WP_SPEED*2;
 self.m_speedDec = -10;
+self.m_speedDecRate = 0.8;
 self.m_direction = 0;
 self.m_player = INVALID_PLAYER;
 self.m_dRadiusBase = 32;
@@ -98,7 +99,7 @@ e.m_state = "ready";
         if(self.speed &gt; 0)
         {
             
-            self.m_speedDec+=0.4;
+            self.m_speedDec+=self.m_speedDecRate;
             //show_debug_message("Inc = "+string(self.m_speedDec));
             //show_debug_message("Exp = "+string(exp(self.m_speedDec)));
             self.speed -= exp(self.m_speedDec);

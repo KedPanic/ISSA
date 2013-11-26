@@ -2,7 +2,7 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>0</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -31,6 +31,11 @@ self.m_curFireRate = 0;
 self.m_ammo = -1;
 self.m_isFiring = false;
 self.m_isLoading = false;
+self.m_loadingMax = 100;
+self.m_loadingForce = 0
+self.m_loadingAmount = 2;
+self.m_loadingRadius = 8;
+self.m_loadingColor = c_red;
 self.m_player = INVALID_PLAYER;
 </string>
           </argument>
@@ -85,6 +90,11 @@ self.m_player = INVALID_PLAYER;
                 b.m_player = self.m_player;
                 b.m_state = "ready";*/
                 self.m_isLoading = true;
+                self.m_loadingForce+=self.m_loadingAmount;
+                if(self.m_loadingForce &gt; self.m_loadingMax)
+                {
+                    self.m_loadingForce = self.m_loadingMax;
+                }
                 break;
             }
             case WP_MINE:
@@ -94,6 +104,11 @@ self.m_player = INVALID_PLAYER;
                 b.m_player = self.m_player;
                 b.m_state = "ready";*/
                 self.m_isLoading = true;
+                self.m_loadingForce+=self.m_loadingAmount;
+                if(self.m_loadingForce &gt; self.m_loadingMax)
+                {
+                    self.m_loadingForce = self.m_loadingMax;
+                }
                 break;
             }
             case WP_FLAME:
@@ -148,9 +163,84 @@ self.m_player = INVALID_PLAYER;
         //self.m_curFireRate = self.m_fireRate;
     }
 }
+else
+{
+    if(self.m_isLoading == true)
+    {
+        switch(self.m_type)
+        {
+            case WP_HOLE:
+            {
+                b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_hole);
+                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                b.m_player = self.m_player;
+                b.m_speedDecRate *= 1-self.m_loadingForce/self.m_loadingMax;
+                b.m_state = "ready";
+                self.m_curFireRate = self.m_fireRate;
+                break;
+            }
+            case WP_MINE:
+            {
+                b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_mine);
+                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                b.m_player = self.m_player;
+                b.m_speedDecRate *= 1-self.m_loadingForce/self.m_loadingMax;
+                b.m_state = "ready";
+                self.m_curFireRate = self.m_fireRate;
+                break;
+            }
+        }
+    }
+    self.m_isLoading = false;
+    self.m_loadingForce = 0;
+}
 if(self.m_curFireRate&gt;0)
 {
     self.m_curFireRate -= 1;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(self.m_isLoading == true)
+{
+    draw_set_alpha(1);
+    var angle = self.m_player.m_drone.m_angle;
+    var width = sprite_get_width(s_drone)/2-10;
+    draw_circle_color(self.m_player.m_drone.x+cos(angle)*(width+(2*self.m_loadingRadius)),self.m_player.m_drone.y+sin(angle)*(width+(2*self.m_loadingRadius)),self.m_loadingRadius,self.m_loadingColor,self.m_loadingColor,true);
+    draw_circle_color(self.m_player.m_drone.x+cos(angle)*(width+(2*self.m_loadingRadius+2*self.m_loadingRadius*1.5)),self.m_player.m_drone.y+sin(angle)*(width+(2*self.m_loadingRadius+2*self.m_loadingRadius*1.5)),self.m_loadingRadius*1.5,self.m_loadingColor,self.m_loadingColor,true);
+    draw_circle_color(self.m_player.m_drone.x+cos(angle)*(width+(2*self.m_loadingRadius+2*self.m_loadingRadius*1.5+2*self.m_loadingRadius*2)),self.m_player.m_drone.y+sin(angle)*(width+(2*self.m_loadingRadius+2*self.m_loadingRadius*1.5+2*self.m_loadingRadius*2)),self.m_loadingRadius*2,self.m_loadingColor,self.m_loadingColor,true);
+    draw_set_alpha(self.m_loadingForce/(0.3*self.m_loadingMax));
+    draw_circle_color(self.m_player.m_drone.x+cos(angle)*(width+(2*self.m_loadingRadius)),self.m_player.m_drone.y+sin(angle)*(width+(2*self.m_loadingRadius)),self.m_loadingRadius,self.m_loadingColor,self.m_loadingColor,false);
+    if(self.m_loadingForce &gt;= 0.3*self.m_loadingMax)
+    {
+        draw_set_alpha(self.m_loadingForce/(0.6*self.m_loadingMax));
+        draw_circle_color(self.m_player.m_drone.x+cos(angle)*(width+(2*self.m_loadingRadius+2*self.m_loadingRadius*1.5)),self.m_player.m_drone.y+sin(angle)*(width+(2*self.m_loadingRadius+2*self.m_loadingRadius*1.5)),self.m_loadingRadius*1.5,self.m_loadingColor,self.m_loadingColor,false);
+    }
+    if(self.m_loadingForce &gt;= 0.6*self.m_loadingMax)
+    {
+        draw_set_alpha(self.m_loadingForce/self.m_loadingMax);
+        draw_circle_color(self.m_player.m_drone.x+cos(angle)*(width+(2*self.m_loadingRadius+2*self.m_loadingRadius*1.5+2*self.m_loadingRadius*2)),self.m_player.m_drone.y+sin(angle)*(width+(2*self.m_loadingRadius+2*self.m_loadingRadius*1.5+2*self.m_loadingRadius*2)),self.m_loadingRadius*2,self.m_loadingColor,self.m_loadingColor,false);
+    }
+    draw_set_alpha(1);
 }
 </string>
           </argument>
