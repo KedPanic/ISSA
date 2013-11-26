@@ -5,6 +5,34 @@ if(player.m_slots[index]!=WP_NONE)
 {
     switch(player.m_slots[index])
     {
+        case WP_BLOB:
+        {
+            player.m_weapons[index].m_fireRate = WP_FIRERATE;
+            player.m_weapons[index].m_type = WP_BLOB;
+            player.m_weapons[index].m_ammo = 50;
+            break;
+        }
+        case WP_HOLE:
+        {
+            player.m_weapons[index].m_fireRate = WP_FIRERATE*4;
+            player.m_weapons[index].m_type = WP_HOLE;
+            player.m_weapons[index].m_ammo = 10;
+            break;
+        }
+        case WP_MINE:
+        {
+            player.m_weapons[index].m_fireRate = WP_FIRERATE/1.5;
+            player.m_weapons[index].m_type = WP_MINE;
+            player.m_weapons[index].m_ammo = 45;
+            break;
+        }
+        case WP_FLAME:
+        {
+            player.m_weapons[index].m_fireRate = WP_FIRERATE/3;
+            player.m_weapons[index].m_type = WP_FLAME;
+            player.m_weapons[index].m_ammo = 60;
+            break;
+        }
         case WP_ROCKET:
         {
             player.m_weapons[index].m_fireRate = WP_FIRERATE*3;

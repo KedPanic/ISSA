@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>self.m_damage = 1;
-self.m_speed = 5;
+            <string>self.m_damage = WP_DAMAGE;
+self.m_speed = WP_SPEED;
 self.m_direction = 0;
 self.m_player = INVALID_PLAYER;
 self.m_state = "created";

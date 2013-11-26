@@ -34,9 +34,15 @@ self.m_step = 0.1;
 self.m_curStep = 0;
 self.m_maxDiff = 60;
 self.m_curDiff = 0;
+self.m_isAttracted = false;
+self.m_attForce = 0;
+self.m_attTimerBase = 1;
+self.m_attTimer = self.m_attTimerBase;
+self.m_attImunity = 0;
 self.m_curDist = distance_to_point(room_width/2,room_height/2);
 move_towards_point(room_width/2,room_height/2,0);
 self.m_baseDirection = self.direction;
+self.m_slowAmount = 0;
 </string>
           </argument>
         </arguments>
@@ -64,28 +70,95 @@ self.m_baseDirection = self.direction;
     instance_destroy();
 }
 
-self.m_curStep += self.m_step
-self.m_curDiff = self.m_maxDiff*sin(self.m_curStep);
-self.m_curDist -= self.m_speed;
 
-var nAngle = 0;
-
-if(self.m_curDiff &gt;0)
+if((self.m_isAttracted == true)&amp;&amp;(self.m_attImunity &lt;= 0))
 {
-    nAngle = self.direction + 180*arctan(abs(self.m_curDiff)/self.m_curDist)/pi;
+    var nH = instance_nearest(self.x,self.y,o_bullet_hole);
+    var distance = sqrt(power((nH.x-self.x),2)+power((nH.y-self.y),2))-self.sprite_width/2;
+    if(distance&gt;HOLE_ATT_RADIUS)
+    {
+        self.m_isAttracted = false;
+        self.m_attForce = 0;
+        self.m_attTimer = 0;
+        //Re-Init
+        self.m_curDist = sqrt(power(room_width/2-self.x,2)+power(room_height/2-self.y,2));
+        self.m_curStep = 0;
+        self.m_curDiff = 0;
+        move_towards_point(room_width/2,room_height/2,0);
+        self.m_attImunity = 30;
+        show_debug_message("****** Back to normal...");
+    }
+    else
+    {
+        var dirC = point_direction(self.x,self.y,room_width/2,room_height/2);
+        if(self.m_slowAmount&gt;0)
+        {
+            motion_add(dir,self.m_speed/SLOW_FACTOR);
+        }
+        else
+        {
+            motion_add(dirC,self.m_speed);        
+        }
+        if(self.speed &gt; self.m_speed)
+        {
+            self.speed = self.m_speed;
+        }
+        if(self.m_attTimer &lt;=0)
+        {
+            /*var vX = nH.x-self.x;
+            var vY = nH.y-self.y;
+            var angle = -180*arctan2(vY,vX)/pi;*/
+            var dirH = point_direction(self.x,self.y,nH.x,nH.y);
+            motion_add(dirH,self.m_attForce);
+            self.m_attTimer = self.m_attTimerBase;
+        }
+        else
+        {
+            self.m_attTimer --;
+        }
+    }
 }
 else
-{
-    nAngle = self.direction - 180*arctan(abs(self.m_curDiff)/self.m_curDist)/pi;
+{    
+    var nAngle = 0;
+    
+    if(self.m_curDiff &gt;0)
+    {
+        nAngle = self.direction + 180*arctan(abs(self.m_curDiff)/self.m_curDist)/pi;
+    }
+    else
+    {
+        nAngle = self.direction - 180*arctan(abs(self.m_curDiff)/self.m_curDist)/pi;
+    }
+    var nDistance = sqrt(power(self.m_curDiff,2)+power(self.m_curDist,2));
+    self.x = room_width/2-nDistance*cos(nAngle*pi/180);
+    self.y = room_height/2+nDistance*sin(nAngle*pi/180);
+    
+    if(self.m_slowAmount&gt;0)
+    {
+        self.m_curDist -= self.m_speed/SLOW_FACTOR;
+        self.m_curStep += self.m_step/SLOW_FACTOR;
+    }
+    else
+    {
+        self.m_curDist -= self.m_speed; 
+        self.m_curStep += self.m_step       
+    }
+    self.m_curDiff = self.m_maxDiff*sin(self.m_curStep);
+    //show_debug_message("CurDist = "+string(self.m_curDist));
+    //show_debug_message("CurStep = "+string(self.m_curStep));
+    //show_debug_message("CurDiff = "+string(self.m_curDiff));
 }
 
-var nDistance = sqrt(power(self.m_curDiff,2)+power(self.m_curDist,2));
+if(self.m_slowAmount &gt; 0)
+{
+    self.m_slowAmount--;
+}
 
-self.x = room_width/2+nDistance*cos(nAngle*pi/180);
-self.y = room_height/2+nDistance*sin(nAngle*pi/180);
-
-    
-
+if(self.m_attImunity &gt;0)
+{
+    self.m_attImunity--;
+}
 </string>
           </argument>
         </arguments>
@@ -115,6 +188,35 @@ if(other.m_curShield &lt; 0)
     other.m_curShield = 0;
 }
 instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+if(self.m_slowAmount&gt;0)
+{
+    draw_set_alpha(0.5*self.m_slowAmount/SLOW_AMOUNT);
+    draw_circle_color(self.x,self.y,self.sprite_width/2+SLOW_RADIUS,c_green,c_green,false);
+    draw_set_alpha(1);
+}
 </string>
           </argument>
         </arguments>

@@ -43,7 +43,11 @@ self.m_distMin = room_width/2-250;
 self.m_distMax = room_width/2-100;
 self.m_tX = 0;
 self.m_tY = 0;
-
+self.m_isAttracted = false;
+self.m_attForce = 0;
+self.m_attTimerBase = 10;
+self.m_attTimer = self.m_attTimerBase;
+self.m_slowAmount = 0;
 move_towards_point(room_width/2,room_height/2,self.m_speed);
 </string>
           </argument>
@@ -90,17 +94,14 @@ switch(self.m_state)
         {
             //show_debug_message("Switching to moving!");
             self.m_state = "moving";
-            self.m_curTimerFire = 0;
+            self.m_curTimerFire = self.m_timerFire;
             self.m_curTimerMove = irandom_range(self.m_timerMoveMin,self.m_timerMoveMax);
             var rAmount = irandom_range(self.m_angleMin,self.m_angleMax);
-            //show_debug_message("rAmount = "+string(rAmount));
             var rAngle = irandom_range(self.direction-rAmount,self.direction+rAmount);
-            //show_debug_message("rAngle = "+string(rAngle));
             var rDist = random_range(self.m_distMin,self.m_distMax);
-            //show_debug_message("rdist = "+string(rDist));
             self.m_tX = room_width/2 + rDist*cos(pi*rAngle/180);
             self.m_tY = room_height/2 - rDist*sin(pi*rAngle/180);
-            //move_towards_point(self.m_tX,self.m_tY,self.m_ghostSpeed);
+            move_towards_point(self.m_tX,self.m_tY,self.m_ghostSpeed);
         }
         else
         {
@@ -113,8 +114,19 @@ switch(self.m_state)
         if(distance_to_point(self.m_tX,self.m_tY)&lt;=self.m_ghostSpeed)
         {
             self.m_state = "firing";
-            //show_debug_message("Switching to firing!");
+            self.m_curTimerFire = self.m_timerFire;
             self.speed = 0;
+        }
+        else
+        {
+            if(self.m_slowAmount &gt; 0)
+            {
+                self.speed = self.m_ghostSpeed/SLOW_FACTOR;
+            }
+            else
+            {
+                self.speed = self.m_ghostSpeed;
+            }
         }
         break;
     }
@@ -122,12 +134,44 @@ switch(self.m_state)
     {
         if(distance_to_point(room_width/2,room_height/2)&lt;=self.m_distInit)
         {
-            //show_debug_message("Switching to firing!");
             self.speed = 0;
             self.m_state = "firing";
         }
         break;
     }
+}
+
+if(self.m_isAttracted == true)
+{
+    var nH = instance_nearest(self.x,self.y,o_bullet_hole);
+    var distance = sqrt(power((nH.x-self.x),2)+power((nH.y-self.y),2))-self.sprite_width/2;
+    if(distance&gt;HOLE_ATT_RADIUS)
+    {
+        self.m_isAttracted = 0;
+        self.m_attForce = 0;
+        self.m_attTimer = 0;
+        //Re-Init
+    }
+    else
+    {
+        if(self.m_attTimer &lt;=0)
+        {
+            var vX = nH.x-self.x;
+            var vY = nH.y-self.y;
+            var angle = -180*arctan2(vY,vX)/pi;
+            motion_add(angle,self.m_attForce);
+            self.m_attTimer = self.m_attTimerBase;
+        }
+        else
+        {
+            self.m_attTimer --;
+        }
+    }
+}
+
+if(self.m_slowAmount &gt; 0)
+{
+    self.m_slowAmount--;
 }
 </string>
           </argument>
@@ -171,6 +215,12 @@ switch(self.m_state)
         draw_set_alpha(1);
         draw_self();
     }
+}
+if(self.m_slowAmount&gt;0)
+{
+    draw_set_alpha(0.5*self.m_slowAmount/SLOW_AMOUNT);
+    draw_circle_color(self.x,self.y,self.sprite_width/2+SLOW_RADIUS,c_green,c_green,false);
+    draw_set_alpha(1);
 }
 </string>
           </argument>

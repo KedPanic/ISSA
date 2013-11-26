@@ -60,6 +60,46 @@ self.m_player = INVALID_PLAYER;
         //show_debug_message("[WEAPON] Player = "+string(self.m_player.id));
         switch(self.m_type)
         {
+            case WP_BLOB:
+            {
+                b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_blob);
+                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                b.m_player = self.m_player;
+                b.m_state = "ready";
+                break;
+            }
+            case WP_HOLE:
+            {
+                b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_hole);
+                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                b.m_player = self.m_player;
+                b.m_state = "ready";
+                break;
+            }
+            case WP_MINE:
+            {
+                b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_mine);
+                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                b.m_player = self.m_player;
+                b.m_state = "ready";
+                break;
+            }
+            case WP_FLAME:
+            {
+                b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_flame);
+                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                b.m_player = self.m_player;
+                b.m_state = "ready";
+                break;
+            }
+            case WP_ROCKET:
+            {
+                b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_rocket);
+                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                b.m_player = self.m_player;
+                b.m_state = "ready";
+                break;
+            }
             case WP_TRIPLE:
             {
                 b1 = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_default);
@@ -74,7 +114,6 @@ self.m_player = INVALID_PLAYER;
                 b1.m_state = "ready";
                 b2.m_state = "ready";
                 b3.m_state = "ready";
-                //show_debug_message("Bullet fired with Angle = "+string(b1.m_direction));
                 break;
             }
             case WP_DEFAULT:
@@ -83,7 +122,6 @@ self.m_player = INVALID_PLAYER;
                 b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
                 b.m_player = self.m_player;
                 b.m_state = "ready";
-                //show_debug_message("Bullet fired with Angle = "+string(b.m_direction));
                 break;
             }
             default:

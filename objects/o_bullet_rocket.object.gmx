@@ -25,12 +25,43 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>self.m_damage = 1;
-self.m_speed = 5;
+            <string>self.m_damage = WP_DAMAGE;
+self.m_speed = WP_SPEED*2;
+self.m_baseSpeed = self.m_speed/2.5;
+self.m_speedInc = -10;
+self.m_aimRange = 200;
+self.m_aimDelay = 30;
 self.m_direction = 0;
 self.m_player = INVALID_PLAYER;
+self.m_target = -1;
 self.m_state = "created";
 
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>e = instance_create(self.x,self.y,o_bullet_explosion);
+e.m_player = self.m_player;
+e.m_state = "ready";
 </string>
           </argument>
         </arguments>
@@ -57,18 +88,106 @@ self.m_state = "created";
 {
     case "ready":
     {
-        motion_set(self.m_direction,self.m_speed);
+        motion_set(self.m_direction,self.m_baseSpeed);
         self.m_state = "fired";
+        break;
+    }
+    case "fired":
+    {
+        if(self.m_aimDelay &lt;=0)
+        {
+            self.m_state = "aiming";
+        }
+        else
+        {
+            self.m_aimDelay--;
+        }
+        break;
+    }
+    case "aiming":
+    {
+        var s1 = instance_nearest(self.x,self.y,o_kamishark);
+        var r1 = distance_to_object(s1);
+        var s2 = instance_nearest(self.x,self.y,o_super_kamishark);
+        var r2 = distance_to_object(s2);
+        var s3 = instance_nearest(self.x,self.y,o_drunkshark);
+        var r3 = distance_to_object(s3);
+        var s4 = instance_nearest(self.x,self.y,o_ghostshark);
+        var r4 = distance_to_object(s4);
+        var s5 = instance_nearest(self.x,self.y,o_bishark);
+        var r5 = distance_to_object(s5);
+        var s6 = instance_nearest(self.x,self.y,o_bishark_child);
+        var r6 = distance_to_object(s6);
+        var r = min(r1,r2,r3,r4,r5,r6);
+        if(r &lt;= self.m_aimRange)
+        {
+            switch(r)
+            {
+                case r1:
+                {
+                    self.m_target = s1;
+                    break;
+                }
+                case r2:
+                {
+                    self.m_target = s2;
+                    break;
+                }
+                case r3:
+                {
+                    self.m_target = s3;
+                    break;
+                }
+                case r4:
+                {
+                    self.m_target = s4;
+                    break;
+                }
+                case r5:
+                {
+                    self.m_target = s5;
+                    break;
+                }
+                case r6:
+                {
+                    self.m_target = s6;
+                    break;
+                }
+            }
+            self.m_state = "locked";
+        }
+        break;
+    }
+    case "locked":
+    {
+        if(instance_exists(self.m_target))
+        {
+            move_towards_point(self.m_target.x,self.m_target.y,self.m_speed);
+        }
         break;
     }
     default:
     {
-        if((self.x&lt;0)||(self.x&gt;room_width)||(self.y&gt;room_height)|(self.y&lt;0))
-        {
-            instance_destroy();
-        }
-        break;
+        
     }
+}
+self.image_angle = self.direction;
+if(self.speed &lt; self.m_speed)
+{
+    
+    self.m_speedInc+=0.3;
+    show_debug_message("Inc = "+string(self.m_speedInc));
+    show_debug_message("Exp = "+string(exp(self.m_speedInc)));
+    self.speed += exp(self.m_speedInc);
+    show_debug_message("Speed = "+string(self.speed));
+}
+else
+{
+    self.speed= self.m_speed;
+}
+if((self.x&lt;0)||(self.x&gt;room_width)||(self.y&gt;room_height)|(self.y&lt;0))
+{
+    instance_destroy();
 }
 </string>
           </argument>

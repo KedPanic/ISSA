@@ -34,6 +34,12 @@ self.m_angleModifier = 75;
 self.m_curAngleModifier = 0;
 self.m_angleRate = 3;
 self.m_sens = 1;
+self.m_isAttracted = false;
+self.m_attForce = 0;
+self.m_attTimerBase = 10;
+self.m_attTimer = self.m_attTimerBase;
+self.m_slowAmount = 0;
+self.m_isDebug = false;
 </string>
           </argument>
         </arguments>
@@ -60,6 +66,13 @@ self.m_sens = 1;
 {
     instance_destroy();
 }
+
+if(self.m_isDebug == true)
+{
+    move_towards_point(room_width/2,room_height/2,0);
+    self.m_isDebug = false;
+}
+
 switch(self.m_state)
 {
     case "in":
@@ -102,6 +115,45 @@ switch(self.m_state)
         break;
     }
 }
+
+if(self.m_isAttracted == true)
+{
+    var nH = instance_nearest(self.x,self.y,o_bullet_hole);
+    var distance = sqrt(power((nH.x-self.x),2)+power((nH.y-self.y),2))-self.sprite_width/2;
+    if(distance&gt;HOLE_ATT_RADIUS)
+    {
+        self.m_isAttracted = 0;
+        self.m_attForce = 0;
+        self.m_attTimer = 0;
+        //Re-Init
+        move_towards_point(room_width/2,room_height/2,self.m_speed);
+    }
+    else
+    {
+        if(self.m_attTimer &lt;=0)
+        {
+            var vX = nH.x-self.x;
+            var vY = nH.y-self.y;
+            var angle = -180*arctan2(vY,vX)/pi;
+            motion_add(angle,self.m_attForce);
+            self.m_attTimer = self.m_attTimerBase;
+        }
+        else
+        {
+            self.m_attTimer --;
+        }
+    }
+}
+
+if(self.m_slowAmount &gt; 0)
+{
+    self.speed = self.m_speed/SLOW_FACTOR;
+    self.m_slowAmount--;
+}
+else
+{
+    self.speed = self.m_speed;
+}
 </string>
           </argument>
         </arguments>
@@ -131,6 +183,35 @@ if(other.m_curShield &lt; 0)
     other.m_curShield = 0;
 }
 instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+if(self.m_slowAmount&gt;0)
+{
+    draw_set_alpha(0.5*self.m_slowAmount/SLOW_AMOUNT);
+    draw_circle_color(self.x,self.y,self.sprite_width/2+SLOW_RADIUS,c_green,c_green,false);
+    draw_set_alpha(1);
+}
 </string>
           </argument>
         </arguments>
