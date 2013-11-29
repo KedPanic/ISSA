@@ -7,18 +7,18 @@
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
   <bbox_left>0</bbox_left>
-  <bbox_right>255</bbox_right>
+  <bbox_right>72</bbox_right>
   <bbox_top>0</bbox_top>
-  <bbox_bottom>255</bbox_bottom>
+  <bbox_bottom>30</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
-  <For3D>-1</For3D>
-  <width>256</width>
-  <height>256</height>
+  <For3D>0</For3D>
+  <width>73</width>
+  <height>31</height>
   <frames>
-    <frame index="0">images\s_player3_mask_0.png</frame>
+    <frame index="0">images\s_eyebrow_player_2_5_0.png</frame>
   </frames>
 </sprite>
