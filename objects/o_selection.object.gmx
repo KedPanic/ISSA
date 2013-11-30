@@ -307,6 +307,7 @@ draw_sprite(s_menu_selection, 0, 0, 0);
 // draw cursor.
 // color: 198, 570
 // eyebrow: 198, 
+// offsetx: 80
 for(var index = 0; index &lt; MAX_PLAYER; index++)
 {
     var player = g_playerManager.m_players[index];
@@ -325,20 +326,20 @@ for(var index = 0; index &lt; MAX_PLAYER; index++)
         }
         
         // config offset.
-        var offsetx = 75 * (index % 2);
+        var offsetx = 73 * (index % 2);
         var offsety = 0;
         if(index &gt; 1)
         {
-            offsety = 75;
+            offsety = 61;
         }
         
         if(player.m_eyebrow == INVALID_EYEBROW)
         {
-            draw_sprite_ext(s_selection, 0, offsetx + 198 + player.m_color * 84, offsety + 570, flipx, flipy, 0, c_white, 1);
+            draw_sprite_ext(s_selection, 0, offsetx + 243 + player.m_color * 80, offsety + 571, flipx, flipy, 0, c_white, 1);
         }
         else
         {
-            draw_sprite_ext(s_selection, 0, offsetx + 198 + player.m_eyebrow * 84, offsety + 660, flipx, flipy, 0, c_white, 1);        
+            draw_sprite_ext(s_selection, 0, offsetx + 243 + player.m_eyebrow * 80, offsety + 660, flipx, flipy, 0, c_white, 1);        
         }
     }    
 }
