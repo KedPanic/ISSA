@@ -33,7 +33,6 @@
     <sprites name="Player">
       <sprite>sprites\ship</sprite>
       <sprite>sprites\s_drone</sprite>
-      <sprite>sprites\ship_background</sprite>
       <sprite>sprites\s_bullet_default</sprite>
       <sprite>sprites\s_bullet_flame</sprite>
       <sprite>sprites\s_bullet_rocket</sprite>
@@ -56,8 +55,6 @@
       <sprite>sprites\s_shark_bullet</sprite>
     </sprites>
     <sprites name="Menus">
-      <sprite>sprites\s_b_play</sprite>
-      <sprite>sprites\s_b_play_h</sprite>
       <sprite>sprites\s_menu_selection</sprite>
       <sprite>sprites\s_selection</sprite>
       <sprites name="eyebrows">
@@ -70,6 +67,14 @@
           <sprite>sprites\s_eyebrow_player_1_3</sprite>
           <sprite>sprites\s_eyebrow_player_1_2</sprite>
           <sprite>sprites\s_eyebrow_player_1_1</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_1_3</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_1_4</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_1_5</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_1_6</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_1_7</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_1_8</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_1_1</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_1_2</sprite>
         </sprites>
         <sprites name="player 2">
           <sprite>sprites\s_eyebrow_player_2_1</sprite>
@@ -80,6 +85,14 @@
           <sprite>sprites\s_eyebrow_player_2_6</sprite>
           <sprite>sprites\s_eyebrow_player_2_7</sprite>
           <sprite>sprites\s_eyebrow_player_2_8</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_2_8</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_2_1</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_2_2</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_2_3</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_2_4</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_2_5</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_2_6</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_2_7</sprite>
         </sprites>
         <sprites name="player 3">
           <sprite>sprites\s_eyebrow_player_3_1</sprite>
@@ -90,6 +103,14 @@
           <sprite>sprites\s_eyebrow_player_3_6</sprite>
           <sprite>sprites\s_eyebrow_player_3_7</sprite>
           <sprite>sprites\s_eyebrow_player_3_8</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_3_8</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_3_1</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_3_2</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_3_3</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_3_4</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_3_5</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_3_6</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_3_7</sprite>
         </sprites>
         <sprites name="player 4">
           <sprite>sprites\s_eyebrow_player_4_1</sprite>
@@ -100,6 +121,14 @@
           <sprite>sprites\s_eyebrow_player_4_6</sprite>
           <sprite>sprites\s_eyebrow_player_4_7</sprite>
           <sprite>sprites\s_eyebrow_player_4_8</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_4_1</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_4_2</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_4_3</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_4_4</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_4_5</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_4_6</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_4_7</sprite>
+          <sprite>sprites\s_tiny_eyebrow_player_4_8</sprite>
         </sprites>
       </sprites>
       <sprites name="players">
@@ -111,9 +140,14 @@
         <sprite>sprites\s_player3_mask</sprite>
         <sprite>sprites\s_player4</sprite>
         <sprite>sprites\s_player4_mask</sprite>
+        <sprite>sprites\s_player_helmet_1</sprite>
+        <sprite>sprites\s_player_helmet_2</sprite>
+        <sprite>sprites\s_player_helmet_3</sprite>
+        <sprite>sprites\s_player_helmet_4</sprite>
       </sprites>
       <sprite>sprites\s_press_start_01</sprite>
       <sprite>sprites\s_press_start_02</sprite>
+      <sprite>sprites\s_color_selected</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>

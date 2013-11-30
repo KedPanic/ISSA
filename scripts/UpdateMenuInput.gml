@@ -68,9 +68,10 @@ if(player.m_eyebrow == INVALID_EYEBROW)
         player.m_color += value;
     }        
     
-    if(validate)
+    if(validate and selection.m_color_selected[player.m_color] == false)
     {
         player.m_eyebrow = 0;
+        selection.m_color_selected[player.m_color] = true;
     }
 }
 else
@@ -87,6 +88,7 @@ else
     else if(cancel)
     {
         player.m_eyebrow = INVALID_EYEBROW;
+        selection.m_color_selected[player.m_color] = false;
     }
 }
 

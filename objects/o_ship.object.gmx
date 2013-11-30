@@ -95,15 +95,14 @@ draw_set_alpha(0.5*self.m_curShield/self.m_shield);
 draw_circle_color(self.x,self.y,self.sprite_width/2+10+3*cos(self.m_shieldVariation),self.m_shieldColor,self.m_shieldColor,false);
 draw_set_alpha(1);
 
-draw_sprite(ship_background, 0, self.x, self.y);
-
-// todo: draw players.
-
 var recx = self.x - 21;
 var recy = self.y + 53;
 draw_rectangle_color(recx, recy, recx + (57 * (self.m_curLife / self.m_life)), recy + 15, c_green, c_green, c_green, c_green, false);
 
 draw_self();
+
+// todo: draw players.
+
 </string>
           </argument>
         </arguments>

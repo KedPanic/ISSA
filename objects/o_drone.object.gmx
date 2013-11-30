@@ -30,6 +30,9 @@ self.m_angle    = -pi / 2;
 self.m_color    = 0;
 self.m_speed    = 0.0001;
 self.m_move     = 0;
+self.m_x        = 0;
+self.m_y        = 0;
+self.m_radius   = 0;
 </string>
           </argument>
         </arguments>
@@ -54,8 +57,8 @@ self.m_move     = 0;
             <kind>1</kind>
             <string>self.m_angle += self.m_move * ((self.m_speed * pi) * 180);
 
-self.x = 512 + (cos(self.m_angle) * ((sprite_get_width(ship) / 2) + sprite_get_width(s_drone)));
-self.y = 512 + (sin(self.m_angle) * ((sprite_get_height(ship) / 2) + sprite_get_height(s_drone)));
+self.x = self.m_x + (cos(self.m_angle) * ((self.m_radius + sprite_get_width(s_drone))));
+self.y = self.m_y + (sin(self.m_angle) * ((self.m_radius + sprite_get_height(s_drone))));
 </string>
           </argument>
         </arguments>

@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -41,9 +41,20 @@ self.m_player_timer[1] = 0;
 self.m_player_timer[2] = 0;
 self.m_player_timer[3] = 0;
 
-self.m_timer = 1.0; // 1 seconde
-
+self.m_timer = 0.5; // 1 seconde
 self.m_nbReady = 0;
+
+////////////////////////////////////////////////////
+// colors.
+////////////////////////////////////////////////////
+self.m_color_selected[0] = false;
+self.m_color_selected[1] = false;
+self.m_color_selected[2] = false;
+self.m_color_selected[3] = false;
+self.m_color_selected[4] = false;
+self.m_color_selected[5] = false;
+self.m_color_selected[6] = false;
+self.m_color_selected[7] = false;
 
 ////////////////////////////////////////////////////
 // eyebrows.
@@ -75,6 +86,32 @@ self.m_player_pos_y[0,6] = 103;
 self.m_player_pos_x[0,7] = 65;
 self.m_player_pos_y[0,7] = 114;
 
+self.m_player_tiny_eyebrows[0,0] = s_tiny_eyebrow_player_1_1;
+self.m_player_tiny_eyebrows[0,1] = s_tiny_eyebrow_player_1_2;
+self.m_player_tiny_eyebrows[0,2] = s_tiny_eyebrow_player_1_3;
+self.m_player_tiny_eyebrows[0,3] = s_tiny_eyebrow_player_1_4;
+self.m_player_tiny_eyebrows[0,4] = s_tiny_eyebrow_player_1_5;
+self.m_player_tiny_eyebrows[0,5] = s_tiny_eyebrow_player_1_6;
+self.m_player_tiny_eyebrows[0,6] = s_tiny_eyebrow_player_1_7;
+self.m_player_tiny_eyebrows[0,7] = s_tiny_eyebrow_player_1_8;
+
+self.m_player_tiny_pos_x[0,0] = 452;
+self.m_player_tiny_pos_y[0,0] = 830;
+self.m_player_tiny_pos_x[0,1] = 449;
+self.m_player_tiny_pos_y[0,1] = 827;
+self.m_player_tiny_pos_x[0,2] = 450;
+self.m_player_tiny_pos_y[0,2] = 840;
+self.m_player_tiny_pos_x[0,3] = 450;
+self.m_player_tiny_pos_y[0,3] = 830;
+self.m_player_tiny_pos_x[0,4] = 451;
+self.m_player_tiny_pos_y[0,4] = 828;
+self.m_player_tiny_pos_x[0,5] = 450;
+self.m_player_tiny_pos_y[0,5] = 831;
+self.m_player_tiny_pos_x[0,6] = 449;
+self.m_player_tiny_pos_y[0,6] = 824;
+self.m_player_tiny_pos_x[0,7] = 449;
+self.m_player_tiny_pos_y[0,7] = 831;
+
 
 /* player 2 */
 self.m_player_eyebrows[1,0] = s_eyebrow_player_2_1;
@@ -102,6 +139,32 @@ self.m_player_pos_x[1,6] = 43;
 self.m_player_pos_y[1,6] = 96;
 self.m_player_pos_x[1,7] = 45;
 self.m_player_pos_y[1,7] = 103;
+
+self.m_player_tiny_eyebrows[1,0] = s_tiny_eyebrow_player_2_1;
+self.m_player_tiny_eyebrows[1,1] = s_tiny_eyebrow_player_2_2;
+self.m_player_tiny_eyebrows[1,2] = s_tiny_eyebrow_player_2_3;
+self.m_player_tiny_eyebrows[1,3] = s_tiny_eyebrow_player_2_4;
+self.m_player_tiny_eyebrows[1,4] = s_tiny_eyebrow_player_2_5;
+self.m_player_tiny_eyebrows[1,5] = s_tiny_eyebrow_player_2_6;
+self.m_player_tiny_eyebrows[1,6] = s_tiny_eyebrow_player_2_7;
+self.m_player_tiny_eyebrows[1,7] = s_tiny_eyebrow_player_2_8;
+
+self.m_player_tiny_pos_x[1,0] = 530;
+self.m_player_tiny_pos_y[1,0] = 816;
+self.m_player_tiny_pos_x[1,1] = 526;
+self.m_player_tiny_pos_y[1,1] = 812;
+self.m_player_tiny_pos_x[1,2] = 532;
+self.m_player_tiny_pos_y[1,2] = 829;
+self.m_player_tiny_pos_x[1,3] = 529;
+self.m_player_tiny_pos_y[1,3] = 818;
+self.m_player_tiny_pos_x[1,4] = 529;
+self.m_player_tiny_pos_y[1,4] = 814;
+self.m_player_tiny_pos_x[1,5] = 528;
+self.m_player_tiny_pos_y[1,5] = 816;
+self.m_player_tiny_pos_x[1,6] = 531;
+self.m_player_tiny_pos_y[1,6] = 814;
+self.m_player_tiny_pos_x[1,7] = 527;
+self.m_player_tiny_pos_y[1,7] = 817;
 
 
 /* player 3 */
@@ -131,8 +194,34 @@ self.m_player_pos_y[2,6] = 68;
 self.m_player_pos_x[2,7] = 54;
 self.m_player_pos_y[2,7] = 63;
 
+self.m_player_tiny_eyebrows[2,0] = s_tiny_eyebrow_player_3_1;
+self.m_player_tiny_eyebrows[2,1] = s_tiny_eyebrow_player_3_2;
+self.m_player_tiny_eyebrows[2,2] = s_tiny_eyebrow_player_3_3;
+self.m_player_tiny_eyebrows[2,3] = s_tiny_eyebrow_player_3_4;
+self.m_player_tiny_eyebrows[2,4] = s_tiny_eyebrow_player_3_5;
+self.m_player_tiny_eyebrows[2,5] = s_tiny_eyebrow_player_3_6;
+self.m_player_tiny_eyebrows[2,6] = s_tiny_eyebrow_player_3_7;
+self.m_player_tiny_eyebrows[2,7] = s_tiny_eyebrow_player_3_8;
 
-/* player 4 *
+self.m_player_tiny_pos_x[2,0] = 453;
+self.m_player_tiny_pos_y[2,0] = 887;
+self.m_player_tiny_pos_x[2,1] = 452;
+self.m_player_tiny_pos_y[2,1] = 886;
+self.m_player_tiny_pos_x[2,2] = 453;
+self.m_player_tiny_pos_y[2,2] = 875;
+self.m_player_tiny_pos_x[2,3] = 454;
+self.m_player_tiny_pos_y[2,3] = 884;
+self.m_player_tiny_pos_x[2,4] = 451;
+self.m_player_tiny_pos_y[2,4] = 886;
+self.m_player_tiny_pos_x[2,5] = 454;
+self.m_player_tiny_pos_y[2,5] = 885;
+self.m_player_tiny_pos_x[2,6] = 453;
+self.m_player_tiny_pos_y[2,6] = 886;
+self.m_player_tiny_pos_x[2,7] = 454;
+self.m_player_tiny_pos_y[2,7] = 886;
+
+
+/* player 4 */
 self.m_player_eyebrows[3,0] = s_eyebrow_player_4_1;
 self.m_player_eyebrows[3,1] = s_eyebrow_player_4_2;
 self.m_player_eyebrows[3,2] = s_eyebrow_player_4_3;
@@ -141,7 +230,50 @@ self.m_player_eyebrows[3,4] = s_eyebrow_player_4_5;
 self.m_player_eyebrows[3,5] = s_eyebrow_player_4_6;
 self.m_player_eyebrows[3,6] = s_eyebrow_player_4_7;
 self.m_player_eyebrows[3,7] = s_eyebrow_player_4_8;
-*/
+
+self.m_player_pos_x[3,0] = 48;
+self.m_player_pos_y[3,0] = 115;
+self.m_player_pos_x[3,1] = 51;
+self.m_player_pos_y[3,1] = 109;
+self.m_player_pos_x[3,2] = 47;
+self.m_player_pos_y[3,2] = 166;
+self.m_player_pos_x[3,3] = 47;
+self.m_player_pos_y[3,3] = 110;
+self.m_player_pos_x[3,4] = 48;
+self.m_player_pos_y[3,4] = 110;
+self.m_player_pos_x[3,5] = 47;
+self.m_player_pos_y[3,5] = 118;
+self.m_player_pos_x[3,6] = 51;
+self.m_player_pos_y[3,6] = 105;
+self.m_player_pos_x[3,7] = 41;
+self.m_player_pos_y[3,7] = 114;
+
+self.m_player_tiny_eyebrows[3,0] = s_tiny_eyebrow_player_4_1;
+self.m_player_tiny_eyebrows[3,1] = s_tiny_eyebrow_player_4_2;
+self.m_player_tiny_eyebrows[3,2] = s_tiny_eyebrow_player_4_3;
+self.m_player_tiny_eyebrows[3,3] = s_tiny_eyebrow_player_4_4;
+self.m_player_tiny_eyebrows[3,4] = s_tiny_eyebrow_player_4_5;
+self.m_player_tiny_eyebrows[3,5] = s_tiny_eyebrow_player_4_6;
+self.m_player_tiny_eyebrows[3,6] = s_tiny_eyebrow_player_4_7;
+self.m_player_tiny_eyebrows[3,7] = s_tiny_eyebrow_player_4_8;
+
+self.m_player_tiny_pos_x[3,0] = 562;
+self.m_player_tiny_pos_y[3,0] = 874;
+self.m_player_tiny_pos_x[3,1] = 559;
+self.m_player_tiny_pos_y[3,1] = 870;
+self.m_player_tiny_pos_x[3,2] = 572;
+self.m_player_tiny_pos_y[3,2] = 884;
+self.m_player_tiny_pos_x[3,3] = 565;
+self.m_player_tiny_pos_y[3,3] = 877;
+self.m_player_tiny_pos_x[3,4] = 562;
+self.m_player_tiny_pos_y[3,4] = 874;
+self.m_player_tiny_pos_x[3,5] = 563;
+self.m_player_tiny_pos_y[3,5] = 877;
+self.m_player_tiny_pos_x[3,6] = 561;
+self.m_player_tiny_pos_y[3,6] = 873;
+self.m_player_tiny_pos_x[3,7] = 563;
+self.m_player_tiny_pos_y[3,7] = 876;
+
 
 ////////////////////////////////////////////////////
 // players
@@ -154,6 +286,60 @@ self.m_player_masks[0] = s_player1_mask;
 self.m_player_masks[1] = s_player2_mask;
 self.m_player_masks[2] = s_player3_mask;
 self.m_player_masks[3] = s_player4_mask;
+
+////////////////////////////////////////////////////
+// helmets.
+////////////////////////////////////////////////////
+self.m_player_helmets[0] = s_player_helmet_1;
+self.m_player_helmets[1] = s_player_helmet_2;
+self.m_player_helmets[2] = s_player_helmet_3;
+self.m_player_helmets[3] = s_player_helmet_4;
+
+self.m_player_helmet_posx[0] = 134;
+self.m_player_helmet_posy[0] = 364;
+self.m_player_helmet_start_posx[0] = 134;
+self.m_player_helmet_start_posy[0] = 220;
+
+self.m_player_helmet_posx[1] = 335;
+self.m_player_helmet_posy[1] = 353;
+self.m_player_helmet_start_posx[1] = 335;
+self.m_player_helmet_start_posy[1] = 160;
+
+self.m_player_helmet_posx[2] = 548;
+self.m_player_helmet_posy[2] = 318;
+self.m_player_helmet_start_posx[2] = 445;
+self.m_player_helmet_start_posy[2] = 491;
+
+self.m_player_helmet_posx[3] = 752;
+self.m_player_helmet_posy[3] = 360;
+self.m_player_helmet_start_posx[3] = 752;
+self.m_player_helmet_start_posy[3] = 160;
+
+////////////////////////////////////////////////////
+// drones
+////////////////////////////////////////////////////
+var shipx = 511;
+var shipy = 866;
+var shiprx = 92;
+var shipry = 96;
+
+self.m_player_drones[0] = instance_create(0, 0, o_drone);
+self.m_player_drones[0].m_angle = arctan2(-1, -1);
+self.m_player_drones[1] = instance_create(0, 0, o_drone);
+self.m_player_drones[1].m_angle = arctan2(-1, 1);
+self.m_player_drones[2] = instance_create(0, 0, o_drone);
+self.m_player_drones[2].m_angle = arctan2(1, -1);
+self.m_player_drones[3] = instance_create(0, 0, o_drone);
+self.m_player_drones[3].m_angle = arctan2(1, 1);
+
+
+for(var index = 0; index &lt; 4; ++index)
+{
+    self.m_player_drones[index].m_x = shipx;
+    self.m_player_drones[index].m_y = shipy;
+    self.m_player_drones[index].m_radius = 70;
+    self.m_player_drones[index].visible = false;
+}
 
 </string>
           </argument>
@@ -202,6 +388,9 @@ for(var index = 0; index &lt; MAX_PLAYER; index++)
                 {
                     self.m_player_timer[index] = 0;
                 }
+                
+                self.m_player_drones[index].m_color = player.m_color;
+                self.m_player_drones[index].visible = self.m_player_ready[index];
             }
         }
         else
@@ -212,7 +401,7 @@ for(var index = 0; index &lt; MAX_PLAYER; index++)
                 
                 if(self.m_player_timer[index] &gt;= self.m_timer)
                 {
-                    show_message("ready");
+                    self.m_player_timer[index] = self.m_timer
                     self.m_nbReady++;
                 }
             }            
@@ -253,10 +442,15 @@ if(self.m_nbReady == g_playerManager.m_nbPlayers)
 // players
 var maskIndex = shader_get_sampler_index(ColourMap, "u_sMask");
 var colourParams = shader_get_uniform(ColourMap, "u_vColour");
-        
-for(var index = 0; index &lt; MAX_PLAYER; index++)
+var player_posx = 125;
+
+for(var index = MAX_PLAYER - 1; index &gt;= 0; index--)
 {
-    var offsetx = 202 * index;
+    var offsetx = 203 * index;
+    if(index == 3)
+    {
+        offsetx += 3;
+    }    
     
     var player = g_playerManager.m_players[index];
     if(player != INVALID_PLAYER)
@@ -272,31 +466,35 @@ for(var index = 0; index &lt; MAX_PLAYER; index++)
         shader_set(ColourMap);
         shader_set_uniform_f(colourParams, red, green, blue, 1.0);
         texture_set_stage(maskIndex, mask);
-        draw_sprite(self.m_players[index], 0, 125 + offsetx, 304);
+        draw_sprite(self.m_players[index], 0, player_posx + offsetx, 304);
         shader_reset();
         
         // draw eyebrow.
         if(player.m_eyebrow != INVALID_EYEBROW)
         {
-            draw_sprite(self.m_player_eyebrows[index,player.m_eyebrow], 0, 125 + offsetx + self.m_player_pos_x[index,player.m_eyebrow], 304 + self.m_player_pos_y[index,player.m_eyebrow]);
+            draw_sprite(self.m_player_eyebrows[index,player.m_eyebrow], 0, player_posx + offsetx + self.m_player_pos_x[index,player.m_eyebrow], 304 + self.m_player_pos_y[index,player.m_eyebrow]);
         }
     }
     
     // draw press start.
-    if(self.m_player_timer[index] &lt; self.m_timer)
+    if(self.m_player_timer[index] &lt; self.m_timer or self.m_player_ready[index])
     {
         if(self.m_player_ready[index])
         {
+            var posx = self.m_player_helmet_start_posx[index] + ((self.m_player_helmet_posx[index] - self.m_player_helmet_start_posx[index]) * (1.0 -  (((self.m_timer - self.m_player_timer[index]) / self.m_timer))));
+            var posy = self.m_player_helmet_start_posy[index] + ((self.m_player_helmet_posy[index] - self.m_player_helmet_start_posy[index]) * (1.0 -  (((self.m_timer - self.m_player_timer[index]) / self.m_timer))));
+            
+            draw_sprite(self.m_player_helmets[index], 0, posx, posy);
         }
         else
         {
-            var offsety = 366 * (1.0 -  (((self.m_timer - self.m_player_timer[index]) / self.m_timer)));
+            var offsety = sprite_get_height(s_press_start_01) * (1.0 -  (((self.m_timer - self.m_player_timer[index]) / self.m_timer)));
             
-            var posy = 366 - offsety;
-            var posy2 = 366 + offsety;    
+            var posy = 304 - offsety;
+            var posy2 = 298 + offsety;
             
-            draw_sprite(s_press_start_01, 0, 125 + offsetx, posy);
-            draw_sprite(s_press_start_02, 0, 125 + offsetx, posy2 + sprite_get_height(s_press_start_01));
+            draw_sprite(s_press_start_01, 0, player_posx + offsetx, posy);
+            draw_sprite(s_press_start_02, 0, player_posx + offsetx, posy2 + sprite_get_height(s_press_start_01));
         }
     }
 }
@@ -304,10 +502,29 @@ for(var index = 0; index &lt; MAX_PLAYER; index++)
 // background
 draw_sprite(s_menu_selection, 0, 0, 0);
 
+// color selected.
+for(var index = 0; index &lt; NB_COLORS; index++)
+{
+    if(self.m_color_selected[index] == true)
+    {
+        draw_sprite(s_color_selected, 0, 252 + 80 * index, 576);
+    }
+}
+
+// tiny eyebrows
+for(var index = 0; index &lt; MAX_PLAYER; index++)
+{
+    var player = g_playerManager.m_players[index];
+    if(player != INVALID_PLAYER)
+    {
+        if(player.m_eyebrow != INVALID_EYEBROW)
+        {
+            draw_sprite(self.m_player_tiny_eyebrows[index,player.m_eyebrow], 0, self.m_player_tiny_pos_x[index,player.m_eyebrow], self.m_player_tiny_pos_y[index,player.m_eyebrow]);
+        }
+    }
+}
+
 // draw cursor.
-// color: 198, 570
-// eyebrow: 198, 
-// offsetx: 80
 for(var index = 0; index &lt; MAX_PLAYER; index++)
 {
     var player = g_playerManager.m_players[index];
@@ -323,23 +540,32 @@ for(var index = 0; index &lt; MAX_PLAYER; index++)
         if(index &gt; 1)
         {
             flipy = -1;
-        }
-        
-        // config offset.
-        var offsetx = 73 * (index % 2);
-        var offsety = 0;
-        if(index &gt; 1)
-        {
-            offsety = 61;
-        }
+        }                
         
         if(player.m_eyebrow == INVALID_EYEBROW)
         {
+            // config offset.
+            var offsetx = 73 * (index % 2);
+            var offsety = 0;
+            if(index &gt; 1)
+            {
+                offsety = 61;
+            }
+            
             draw_sprite_ext(s_selection, 0, offsetx + 243 + player.m_color * 80, offsety + 571, flipx, flipy, 0, c_white, 1);
         }
         else
         {
-            draw_sprite_ext(s_selection, 0, offsetx + 243 + player.m_eyebrow * 80, offsety + 660, flipx, flipy, 0, c_white, 1);        
+            // config offset.
+            var offsetx = 79 * (index % 2);
+            var offsety = 0;
+            if(index &gt; 1)
+            {
+                offsety = 63;
+                offsetx += 2;
+            }
+            
+            draw_sprite_ext(s_selection, 0, offsetx + 241 + player.m_eyebrow * 80, offsety + 664, flipx, flipy, 0, c_white, 1);        
         }
     }    
 }
