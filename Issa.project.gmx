@@ -202,9 +202,6 @@
       <object>objects\o_bullet_blob</object>
       <object>objects\o_bullet_smartbomb</object>
     </objects>
-    <objects name="Menus">
-      <object>objects\o_b_play</object>
-    </objects>
     <objects name="States">
       <object>objects\o_intro</object>
       <object>objects\o_menu</object>
