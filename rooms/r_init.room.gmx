@@ -10,7 +10,7 @@
   <persistent>0</persistent>
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
-  <code>globalvar g_gameManager, g_playerManager, g_musicManager;
+  <code>globalvar g_gameManager, g_playerManager, g_musicManager, g_starwarsFont, g_mainFont, g_mainColor;
 
 g_gameManager = instance_create(0,0,o_game_manager);
 g_playerManager = instance_create(0,0,o_player_manager);
@@ -19,8 +19,12 @@ g_musicManager = instance_create(0, 0, o_music_manager);
 randomize();
 
 // create font.
-starwarsFont = font_add("Starjout.ttf", 32, false, false, 0, 255);
-draw_set_font(starwarsFont);
+g_starwarsFont = font_add("Starjout.ttf", 32, false, false, 0, 255);
+draw_set_font(g_starwarsFont);
+
+g_mainFont = font_add("Woodstamp.otf", 47, false, false, 0, 255);
+g_mainColor = make_color_rgb(17, 59, 66);
+
 
 room_goto(r_intro);</code>
   <enableViews>0</enableViews>

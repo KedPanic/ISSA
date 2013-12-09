@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="1" name="datafiles">
+  <datafiles number="2" name="datafiles">
     <datafile>
       <name>Starjout.ttf</name>
       <exists>-1</exists>
@@ -20,6 +20,23 @@
         </Config>
       </ConfigOptions>
       <filename>Starjout.ttf</filename>
+    </datafile>
+    <datafile>
+      <name>Woodstamp.otf</name>
+      <exists>-1</exists>
+      <size>37992</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>Woodstamp.otf</filename>
     </datafile>
   </datafiles>
   <NewExtensions/>
@@ -55,99 +72,114 @@
       <sprite>sprites\s_shark_bullet</sprite>
     </sprites>
     <sprites name="Menus">
-      <sprite>sprites\s_menu_selection</sprite>
-      <sprite>sprites\s_selection</sprite>
-      <sprites name="eyebrows">
-        <sprites name="player 1">
-          <sprite>sprites\s_eyebrow_player_1_8</sprite>
-          <sprite>sprites\s_eyebrow_player_1_7</sprite>
-          <sprite>sprites\s_eyebrow_player_1_6</sprite>
-          <sprite>sprites\s_eyebrow_player_1_5</sprite>
-          <sprite>sprites\s_eyebrow_player_1_4</sprite>
-          <sprite>sprites\s_eyebrow_player_1_3</sprite>
-          <sprite>sprites\s_eyebrow_player_1_2</sprite>
-          <sprite>sprites\s_eyebrow_player_1_1</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_1_3</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_1_4</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_1_5</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_1_6</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_1_7</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_1_8</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_1_1</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_1_2</sprite>
+      <sprites name="shop">
+        <sprite>sprites\s_menu_shop</sprite>
+        <sprites name="weapons">
+          <sprites name="counter">
+            <sprite>sprites\s_counter_0</sprite>
+            <sprite>sprites\s_counter_1</sprite>
+            <sprite>sprites\s_counter_2</sprite>
+            <sprite>sprites\s_counter_3</sprite>
+            <sprite>sprites\s_counter_4</sprite>
+          </sprites>
         </sprites>
-        <sprites name="player 2">
-          <sprite>sprites\s_eyebrow_player_2_1</sprite>
-          <sprite>sprites\s_eyebrow_player_2_2</sprite>
-          <sprite>sprites\s_eyebrow_player_2_3</sprite>
-          <sprite>sprites\s_eyebrow_player_2_4</sprite>
-          <sprite>sprites\s_eyebrow_player_2_5</sprite>
-          <sprite>sprites\s_eyebrow_player_2_6</sprite>
-          <sprite>sprites\s_eyebrow_player_2_7</sprite>
-          <sprite>sprites\s_eyebrow_player_2_8</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_2_8</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_2_1</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_2_2</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_2_3</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_2_4</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_2_5</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_2_6</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_2_7</sprite>
-        </sprites>
-        <sprites name="player 3">
-          <sprite>sprites\s_eyebrow_player_3_1</sprite>
-          <sprite>sprites\s_eyebrow_player_3_2</sprite>
-          <sprite>sprites\s_eyebrow_player_3_3</sprite>
-          <sprite>sprites\s_eyebrow_player_3_4</sprite>
-          <sprite>sprites\s_eyebrow_player_3_5</sprite>
-          <sprite>sprites\s_eyebrow_player_3_6</sprite>
-          <sprite>sprites\s_eyebrow_player_3_7</sprite>
-          <sprite>sprites\s_eyebrow_player_3_8</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_3_8</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_3_1</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_3_2</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_3_3</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_3_4</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_3_5</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_3_6</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_3_7</sprite>
-        </sprites>
-        <sprites name="player 4">
-          <sprite>sprites\s_eyebrow_player_4_1</sprite>
-          <sprite>sprites\s_eyebrow_player_4_2</sprite>
-          <sprite>sprites\s_eyebrow_player_4_3</sprite>
-          <sprite>sprites\s_eyebrow_player_4_4</sprite>
-          <sprite>sprites\s_eyebrow_player_4_5</sprite>
-          <sprite>sprites\s_eyebrow_player_4_6</sprite>
-          <sprite>sprites\s_eyebrow_player_4_7</sprite>
-          <sprite>sprites\s_eyebrow_player_4_8</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_4_1</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_4_2</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_4_3</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_4_4</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_4_5</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_4_6</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_4_7</sprite>
-          <sprite>sprites\s_tiny_eyebrow_player_4_8</sprite>
-        </sprites>
+        <sprite>sprites\s_shop_selection</sprite>
       </sprites>
-      <sprites name="players">
-        <sprite>sprites\s_player1</sprite>
-        <sprite>sprites\s_player1_mask</sprite>
-        <sprite>sprites\s_player2</sprite>
-        <sprite>sprites\s_player2_mask</sprite>
-        <sprite>sprites\s_player3</sprite>
-        <sprite>sprites\s_player3_mask</sprite>
-        <sprite>sprites\s_player4</sprite>
-        <sprite>sprites\s_player4_mask</sprite>
-        <sprite>sprites\s_player_helmet_1</sprite>
-        <sprite>sprites\s_player_helmet_2</sprite>
-        <sprite>sprites\s_player_helmet_3</sprite>
-        <sprite>sprites\s_player_helmet_4</sprite>
+      <sprites name="selection">
+        <sprite>sprites\s_selection</sprite>
+        <sprite>sprites\s_menu_selection</sprite>
+        <sprites name="eyebrows">
+          <sprites name="player 1">
+            <sprite>sprites\s_eyebrow_player_1_8</sprite>
+            <sprite>sprites\s_eyebrow_player_1_7</sprite>
+            <sprite>sprites\s_eyebrow_player_1_6</sprite>
+            <sprite>sprites\s_eyebrow_player_1_5</sprite>
+            <sprite>sprites\s_eyebrow_player_1_4</sprite>
+            <sprite>sprites\s_eyebrow_player_1_3</sprite>
+            <sprite>sprites\s_eyebrow_player_1_2</sprite>
+            <sprite>sprites\s_eyebrow_player_1_1</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_1_3</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_1_4</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_1_5</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_1_6</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_1_7</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_1_8</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_1_1</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_1_2</sprite>
+          </sprites>
+          <sprites name="player 2">
+            <sprite>sprites\s_eyebrow_player_2_1</sprite>
+            <sprite>sprites\s_eyebrow_player_2_2</sprite>
+            <sprite>sprites\s_eyebrow_player_2_3</sprite>
+            <sprite>sprites\s_eyebrow_player_2_4</sprite>
+            <sprite>sprites\s_eyebrow_player_2_5</sprite>
+            <sprite>sprites\s_eyebrow_player_2_6</sprite>
+            <sprite>sprites\s_eyebrow_player_2_7</sprite>
+            <sprite>sprites\s_eyebrow_player_2_8</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_2_8</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_2_1</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_2_2</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_2_3</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_2_4</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_2_5</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_2_6</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_2_7</sprite>
+          </sprites>
+          <sprites name="player 3">
+            <sprite>sprites\s_eyebrow_player_3_1</sprite>
+            <sprite>sprites\s_eyebrow_player_3_2</sprite>
+            <sprite>sprites\s_eyebrow_player_3_3</sprite>
+            <sprite>sprites\s_eyebrow_player_3_4</sprite>
+            <sprite>sprites\s_eyebrow_player_3_5</sprite>
+            <sprite>sprites\s_eyebrow_player_3_6</sprite>
+            <sprite>sprites\s_eyebrow_player_3_7</sprite>
+            <sprite>sprites\s_eyebrow_player_3_8</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_3_8</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_3_1</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_3_2</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_3_3</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_3_4</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_3_5</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_3_6</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_3_7</sprite>
+          </sprites>
+          <sprites name="player 4">
+            <sprite>sprites\s_eyebrow_player_4_1</sprite>
+            <sprite>sprites\s_eyebrow_player_4_2</sprite>
+            <sprite>sprites\s_eyebrow_player_4_3</sprite>
+            <sprite>sprites\s_eyebrow_player_4_4</sprite>
+            <sprite>sprites\s_eyebrow_player_4_5</sprite>
+            <sprite>sprites\s_eyebrow_player_4_6</sprite>
+            <sprite>sprites\s_eyebrow_player_4_7</sprite>
+            <sprite>sprites\s_eyebrow_player_4_8</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_4_1</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_4_2</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_4_3</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_4_4</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_4_5</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_4_6</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_4_7</sprite>
+            <sprite>sprites\s_tiny_eyebrow_player_4_8</sprite>
+          </sprites>
+        </sprites>
+        <sprites name="players">
+          <sprite>sprites\s_player1</sprite>
+          <sprite>sprites\s_player1_mask</sprite>
+          <sprite>sprites\s_player2</sprite>
+          <sprite>sprites\s_player2_mask</sprite>
+          <sprite>sprites\s_player3</sprite>
+          <sprite>sprites\s_player3_mask</sprite>
+          <sprite>sprites\s_player4</sprite>
+          <sprite>sprites\s_player4_mask</sprite>
+          <sprite>sprites\s_player_helmet_1</sprite>
+          <sprite>sprites\s_player_helmet_2</sprite>
+          <sprite>sprites\s_player_helmet_3</sprite>
+          <sprite>sprites\s_player_helmet_4</sprite>
+        </sprites>
+        <sprite>sprites\s_press_start_01</sprite>
+        <sprite>sprites\s_press_start_02</sprite>
+        <sprite>sprites\s_color_selected</sprite>
       </sprites>
-      <sprite>sprites\s_press_start_01</sprite>
-      <sprite>sprites\s_press_start_02</sprite>
-      <sprite>sprites\s_color_selected</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
@@ -157,6 +189,8 @@
     <scripts name="Menus">
       <script>scripts\UpdateMenuInput.gml</script>
       <script>scripts\MenuCheckNewPlayer.gml</script>
+      <script>scripts\MenuPlayerValidate.gml</script>
+      <script>scripts\MenuShopInputUpdate.gml</script>
     </scripts>
     <scripts name="Music">
       <script>scripts\PlayMusic.gml</script>
@@ -184,7 +218,6 @@
     <objects name="Managers">
       <object>objects\o_game_manager</object>
       <object>objects\o_player_manager</object>
-      <object>objects\o_menu_manager</object>
       <object>objects\o_music_manager</object>
     </objects>
     <objects name="Player">
@@ -229,7 +262,7 @@
     <room>rooms\r_selection</room>
     <room>rooms\r_shop</room>
   </rooms>
-  <constants number="37">
+  <constants number="40">
     <constant name="SHIP_BASESHIELD">10</constant>
     <constant name="SHIP_BASELIFE">25</constant>
     <constant name="SHARK_SCORE">5</constant>
@@ -267,6 +300,9 @@
     <constant name="NB_COLORS">8</constant>
     <constant name="DEAD_ZONE">0.2</constant>
     <constant name="INVALID_EYEBROW">-1</constant>
+    <constant name="NB_WEAPONS">7</constant>
+    <constant name="NB_UPGRADES">7</constant>
+    <constant name="MONEY_MAX">99999999999</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

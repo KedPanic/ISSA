@@ -36,6 +36,20 @@ self.m_shipLife = SHIP_BASELIFE;            // ship current maximum life
 self.m_shipCurShield = self.m_shipShield;   // ship current shield
 self.m_shipCurLife = self.m_shipLife;       // ship current life
 
+self.m_best_player = INVALID_PLAYER;
+
+/* array of bought weapons (max = max players) */
+for(var index = 0; index &lt; NB_WEAPONS; ++index)
+{
+    self.m_weapons[index] = 0;
+}
+
+/* array of bought upgrades */
+for(var index = 0; index &lt; NB_UPGRADES; ++index)
+{
+    self.m_upgrades[index] = false;
+}
+
 </string>
           </argument>
         </arguments>

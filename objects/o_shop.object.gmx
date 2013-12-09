@@ -8,6 +8,100 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Constructor
+self.m_counter[0] = s_counter_0;
+self.m_counter[1] = s_counter_1;
+self.m_counter[2] = s_counter_2;
+self.m_counter[3] = s_counter_3;
+self.m_counter[4] = s_counter_4;
+
+self.m_current_selection = 0;
+
+self.m_player = g_gameManager.m_best_player;
+
+// Shop State.
+self.WELCOME    = 0;
+self.BUY        = 1;
+self.ARE_U_SURE = 2;
+self.START_RUN  = 3;
+self.m_state = self.WELCOME;
+
+for(var index = 0; index &lt; MAX_PLAYER; ++index)
+{
+    self.m_player_lstick_x_on[index] = false;
+    self.m_player_lstick_y_on[index] = false;
+}
+
+// Text.
+self.m_current_text = 0;
+
+self.m_texts[0] = "Welcome stranger !";
+self.m_texts[1] = "";
+
+self.m_texts[2] = "Weapon 1";
+self.m_texts[3] = "Weapon 1";
+
+self.m_texts[4] = "Weapon 2";
+self.m_texts[5] = "Weapon 2";
+
+self.m_texts[6] = "Weapon 3";
+self.m_texts[7] = "Weapon 3";
+
+self.m_texts[8] = "Weapon 4";
+self.m_texts[9] = "Weapon 4";
+
+self.m_texts[10] = "Weapon 5";
+self.m_texts[11] = "Weapon 5";
+
+self.m_texts[12] = "Weapon 6";
+self.m_texts[13] = "Weapon 6";
+
+self.m_texts[14] = "Weapon 7";
+self.m_texts[15] = "Weapon 7";
+
+/* upgrade */
+self.m_texts[16] = "Upgrade 1";
+self.m_texts[17] = "Upgrade 1";
+
+self.m_texts[18] = "Upgrade 2";
+self.m_texts[19] = "Upgrade 2";
+
+self.m_texts[20] = "Upgrade 3";
+self.m_texts[21] = "Upgrade 3";
+
+self.m_texts[22] = "Upgrade 4";
+self.m_texts[23] = "Upgrade 4";
+
+self.m_texts[24] = "Upgrade 5";
+self.m_texts[25] = "Upgrade 5";
+
+self.m_texts[26] = "Upgrade 6";
+self.m_texts[27] = "Upgrade 6";
+
+self.m_texts[28] = "Upgrade 7";
+self.m_texts[29] = "Upgrade 7";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -25,11 +119,107 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check_pressed(vk_escape))
+            <string>switch(self.m_state)
 {
-    room_goto(r_game);
+case self.WELCOME:
+    if(MenuPlayerValidate(self.m_player))
+    {
+        self.m_state = self.BUY;
+        self.m_current_text = 1;
+    }
+    break;
+
+case self.BUY:
+    if(MenuShopInputUpdate(self.m_player, id))
+    {
+        self.m_state = self.ARE_U_SURE;
+    }
+    else
+    {
+        self.m_current_text = 1 + self.m_current_selection;
+    }
+    break;
+
+case self.ARE_U_SURE:
+    break;
+
+case self.START_RUN:
+    {
+        room_goto(r_game);
+    }
+    break;
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw
+
+
+/* background */
+draw_sprite(s_menu_shop, 0, 0, 0);
+
+/* draw cursor */
+if(self.m_state != self.WELCOME)
+{
+    var offsetx = 0;   
+    var current_selection = self.m_current_selection;
+    if(self.m_current_selection &gt; 6)
+    {
+        offsetx = 428;
+        current_selection = self.m_current_selection - 7;
+    }
+    
+    var posx = 127 + (100 * (current_selection mod 3)) + offsetx;
+    var posy = 338 + (95  * floor(current_selection / 3));
+    draw_sprite(s_shop_selection, 0, posx, posy);
+}
+
+/* draw weapon state */
+for(var index = 0; index &lt; NB_WEAPONS; ++index)
+{
+    var posx = 184 + (100 * (index mod 3));
+    var posy = 391 + (95  * floor(index / 3));
+    draw_sprite(self.m_counter[g_gameManager.m_weapons[index]], 0, posx, posy);
+}
+
+for(var index = 0; index &lt; NB_UPGRADES; ++index)
+{
+    if(g_gameManager.m_upgrades[index] == true)
+    {
+    }
+}
+
+
+/* draw cash */
+draw_set_font(g_mainFont);
+draw_set_halign(fa_right);
+draw_text_color(635, 166, string(g_playerManager.m_money) + " $", g_mainColor, g_mainColor, g_mainColor, g_mainColor, 1);
+
+/* draw text */
+var line = self.m_current_text * 2;
+draw_set_halign(fa_left);
+draw_text_color(327, 677, self.m_texts[line], g_mainColor, g_mainColor, g_mainColor, g_mainColor, 1);
+draw_text_color(327, 727, self.m_texts[line + 1], g_mainColor, g_mainColor, g_mainColor, g_mainColor, 1);
 </string>
           </argument>
         </arguments>
