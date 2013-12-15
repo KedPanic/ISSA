@@ -84,6 +84,12 @@
           </sprites>
         </sprites>
         <sprite>sprites\s_shop_selection</sprite>
+        <sprite>sprites\s_shop_popup</sprite>
+        <sprite>sprites\s_shop_popup_selection</sprite>
+        <sprite>sprites\s_shop_popup_text</sprite>
+        <sprite>sprites\s_shop_popup_start</sprite>
+        <sprite>sprites\s_shop_bought</sprite>
+        <sprite>sprites\s_shop_only</sprite>
       </sprites>
       <sprites name="selection">
         <sprite>sprites\s_selection</sprite>
@@ -180,6 +186,7 @@
         <sprite>sprites\s_press_start_02</sprite>
         <sprite>sprites\s_color_selected</sprite>
       </sprites>
+      <sprite>sprites\s_button_a</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
@@ -262,7 +269,7 @@
     <room>rooms\r_selection</room>
     <room>rooms\r_shop</room>
   </rooms>
-  <constants number="40">
+  <constants number="42">
     <constant name="SHIP_BASESHIELD">10</constant>
     <constant name="SHIP_BASELIFE">25</constant>
     <constant name="SHARK_SCORE">5</constant>
@@ -303,6 +310,8 @@
     <constant name="NB_WEAPONS">7</constant>
     <constant name="NB_UPGRADES">7</constant>
     <constant name="MONEY_MAX">99999999999</constant>
+    <constant name="key_validate">vk_enter</constant>
+    <constant name="key_start">vk_space</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>
