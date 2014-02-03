@@ -35,8 +35,7 @@ self.m_shipShield = SHIP_BASESHIELD;        // ship current maximum shield
 self.m_shipLife = SHIP_BASELIFE;            // ship current maximum life
 self.m_shipCurShield = self.m_shipShield;   // ship current shield
 self.m_shipCurLife = self.m_shipLife;       // ship current life
-
-self.m_best_player = INVALID_PLAYER;
+self.m_bestPlayer = INVALID_PLAYER;
 
 /* array of bought weapons (max = max players) */
 for(var index = 0; index &lt; NB_WEAPONS; ++index)

@@ -59,144 +59,151 @@ self.m_player = INVALID_PLAYER;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(self.m_isFiring ==true)
+            <string>g = instance_nearest(0,0,o_game);
+if(g != noone)
 {
-    if(self.m_curFireRate&lt;=0) // weapon can fire
+    if(g.m_showScores == false)
     {
-        //show_debug_message("[WEAPON] Player = "+string(self.m_player.id));
-        switch(self.m_type)
+        if(self.m_isFiring ==true)
         {
-            case WP_SMARTBOMB:
+            if(self.m_curFireRate&lt;=0) // weapon can fire
             {
-                b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_smartbomb);
-                b.m_player = self.m_player;
-                b.m_state = "ready";
-                self.m_curFireRate = self.m_fireRate;
-                break;
-            }
-            case WP_BLOB:
-            {
-                b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_blob);
-                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
-                b.m_player = self.m_player;
-                b.m_state = "ready";
-                self.m_curFireRate = self.m_fireRate;
-                break;
-            }
-            case WP_HOLE:
-            {
-                /*b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_hole);
-                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
-                b.m_player = self.m_player;
-                b.m_state = "ready";*/
-                self.m_isLoading = true;
-                self.m_loadingForce+=self.m_loadingAmount;
-                if(self.m_loadingForce &gt; self.m_loadingMax)
+                //show_debug_message("[WEAPON] Player = "+string(self.m_player.id));
+                switch(self.m_type)
                 {
-                    self.m_loadingForce = self.m_loadingMax;
+                    case WP_SMARTBOMB:
+                    {
+                        b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_smartbomb);
+                        b.m_player = self.m_player;
+                        b.m_state = "ready";
+                        self.m_curFireRate = self.m_fireRate;
+                        break;
+                    }
+                    case WP_BLOB:
+                    {
+                        b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_blob);
+                        b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                        b.m_player = self.m_player;
+                        b.m_state = "ready";
+                        self.m_curFireRate = self.m_fireRate;
+                        break;
+                    }
+                    case WP_HOLE:
+                    {
+                        /*b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_hole);
+                        b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                        b.m_player = self.m_player;
+                        b.m_state = "ready";*/
+                        self.m_isLoading = true;
+                        self.m_loadingForce+=self.m_loadingAmount;
+                        if(self.m_loadingForce &gt; self.m_loadingMax)
+                        {
+                            self.m_loadingForce = self.m_loadingMax;
+                        }
+                        break;
+                    }
+                    case WP_MINE:
+                    {
+                        /*b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_mine);
+                        b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                        b.m_player = self.m_player;
+                        b.m_state = "ready";*/
+                        self.m_isLoading = true;
+                        self.m_loadingForce+=self.m_loadingAmount;
+                        if(self.m_loadingForce &gt; self.m_loadingMax)
+                        {
+                            self.m_loadingForce = self.m_loadingMax;
+                        }
+                        break;
+                    }
+                    case WP_FLAME:
+                    {
+                        b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_flame);
+                        b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                        b.m_player = self.m_player;
+                        b.m_state = "ready";
+                        self.m_curFireRate = self.m_fireRate;
+                        break;
+                    }
+                    case WP_ROCKET:
+                    {
+                        b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_rocket);
+                        b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                        b.m_player = self.m_player;
+                        b.m_state = "ready";
+                        self.m_curFireRate = self.m_fireRate;
+                        break;
+                    }
+                    case WP_TRIPLE:
+                    {
+                        b1 = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_default);
+                        b1.m_direction = -self.m_player.m_drone.m_angle*180/pi-30;
+                        b1.m_player = self.m_player;
+                        b2 = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_default);
+                        b2.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                        b2.m_player = self.m_player;
+                        b3 = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_default);
+                        b3.m_direction = -self.m_player.m_drone.m_angle*180/pi+30;
+                        b3.m_player = self.m_player;
+                        b1.m_state = "ready";
+                        b2.m_state = "ready";
+                        b3.m_state = "ready";
+                        self.m_curFireRate = self.m_fireRate;
+                        break;
+                    }
+                    case WP_DEFAULT:
+                    {
+                        b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_default);
+                        b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                        b.m_player = self.m_player;
+                        b.m_state = "ready";
+                        self.m_curFireRate = self.m_fireRate;
+                        break;
+                    }
+                    default:
+                    {
+                        break;
+                    }
                 }
-                break;
-            }
-            case WP_MINE:
-            {
-                /*b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_mine);
-                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
-                b.m_player = self.m_player;
-                b.m_state = "ready";*/
-                self.m_isLoading = true;
-                self.m_loadingForce+=self.m_loadingAmount;
-                if(self.m_loadingForce &gt; self.m_loadingMax)
-                {
-                    self.m_loadingForce = self.m_loadingMax;
-                }
-                break;
-            }
-            case WP_FLAME:
-            {
-                b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_flame);
-                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
-                b.m_player = self.m_player;
-                b.m_state = "ready";
-                self.m_curFireRate = self.m_fireRate;
-                break;
-            }
-            case WP_ROCKET:
-            {
-                b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_rocket);
-                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
-                b.m_player = self.m_player;
-                b.m_state = "ready";
-                self.m_curFireRate = self.m_fireRate;
-                break;
-            }
-            case WP_TRIPLE:
-            {
-                b1 = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_default);
-                b1.m_direction = -self.m_player.m_drone.m_angle*180/pi-30;
-                b1.m_player = self.m_player;
-                b2 = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_default);
-                b2.m_direction = -self.m_player.m_drone.m_angle*180/pi;
-                b2.m_player = self.m_player;
-                b3 = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_default);
-                b3.m_direction = -self.m_player.m_drone.m_angle*180/pi+30;
-                b3.m_player = self.m_player;
-                b1.m_state = "ready";
-                b2.m_state = "ready";
-                b3.m_state = "ready";
-                self.m_curFireRate = self.m_fireRate;
-                break;
-            }
-            case WP_DEFAULT:
-            {
-                b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_default);
-                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
-                b.m_player = self.m_player;
-                b.m_state = "ready";
-                self.m_curFireRate = self.m_fireRate;
-                break;
-            }
-            default:
-            {
-                break;
+                //self.m_curFireRate = self.m_fireRate;
             }
         }
-        //self.m_curFireRate = self.m_fireRate;
-    }
-}
-else
-{
-    if(self.m_isLoading == true)
-    {
-        switch(self.m_type)
+        else
         {
-            case WP_HOLE:
+            if(self.m_isLoading == true)
             {
-                b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_hole);
-                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
-                b.m_player = self.m_player;
-                b.m_speedDecRate *= 1-self.m_loadingForce/self.m_loadingMax;
-                b.m_state = "ready";
-                self.m_curFireRate = self.m_fireRate;
-                break;
+                switch(self.m_type)
+                {
+                    case WP_HOLE:
+                    {
+                        b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_hole);
+                        b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                        b.m_player = self.m_player;
+                        b.m_speedDecRate *= 1-self.m_loadingForce/self.m_loadingMax;
+                        b.m_state = "ready";
+                        self.m_curFireRate = self.m_fireRate;
+                        break;
+                    }
+                    case WP_MINE:
+                    {
+                        b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_mine);
+                        b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
+                        b.m_player = self.m_player;
+                        b.m_speedDecRate *= 1-self.m_loadingForce/self.m_loadingMax;
+                        b.m_state = "ready";
+                        self.m_curFireRate = self.m_fireRate;
+                        break;
+                    }
+                }
             }
-            case WP_MINE:
-            {
-                b = instance_create(self.m_player.m_drone.x,self.m_player.m_drone.y,o_bullet_mine);
-                b.m_direction = -self.m_player.m_drone.m_angle*180/pi;
-                b.m_player = self.m_player;
-                b.m_speedDecRate *= 1-self.m_loadingForce/self.m_loadingMax;
-                b.m_state = "ready";
-                self.m_curFireRate = self.m_fireRate;
-                break;
-            }
+            self.m_isLoading = false;
+            self.m_loadingForce = 0;
+        }
+        if(self.m_curFireRate&gt;0)
+        {
+            self.m_curFireRate -= 1;
         }
     }
-    self.m_isLoading = false;
-    self.m_loadingForce = 0;
-}
-if(self.m_curFireRate&gt;0)
-{
-    self.m_curFireRate -= 1;
 }
 </string>
           </argument>

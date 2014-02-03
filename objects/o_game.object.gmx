@@ -37,6 +37,40 @@ self.m_curEnemies = 0;       // how many enemies have already been spawned durin
 
 self.m_spawnRadius = 1000;//sqrt(power(room_width/2,2)*2);  // how far from the ship Sharks are being spawned?
 
+
+// UI
+self.m_showScores = false; // do we need to display Players scores?
+self.m_fadeRadius = 128;
+self.m_fadeRadiusInc = 10;
+self.m_fadeAlpha = 0;
+self.m_fadeAlphaInc = 0.05;
+self.m_fadeCol1 = c_blue;
+self.m_fadeCol2 = c_white;
+
+self.m_popupAlpha = 0;
+self.m_popupAlphaInc = 0.05;
+
+self.m_hudP1X = 10;
+self.m_hudP1Y = 10;
+self.m_hudP2X = room_width-sprite_get_width(s_hud_p2)-10;
+self.m_hudP2Y = 10;
+self.m_hudP3X = room_width-sprite_get_width(s_hud_p3)-10;
+self.m_hudP3Y = room_height-sprite_get_height(s_hud_p3)-10;
+self.m_hudP4X = 10;
+self.m_hudP4Y = room_height-sprite_get_height(s_hud_p4)-10;
+
+self.m_cash = 0;
+self.m_isScoreOver = false;
+self.m_scoreOver[0] = false;
+self.m_scoreOver[1] = false;
+self.m_scoreOver[2] = false;
+self.m_scoreOver[3] = false;
+self.m_nextAlpha = 0;
+self.m_nextAlphaInc = 0.1;
+self.m_capText = "New Captain!";
+self.m_capTextAngle = 15;
+self.m_capTextAngleInc = 0.5;
+
 InitLevel(self);
 
 
@@ -93,30 +127,134 @@ for(var index = 0; index &lt; MAX_PLAYER; index++)
 // check if a new player are requested.
 CheckNewPlayer();
 
-// Update enemies generation
-if(self.m_curSpawnRate &lt;=0)
+// check if the stage is complete.
+self.m_stageTime -= delta_time / 1000;
+if(self.m_stageTime &lt;= 0)
 {
-    if(self.m_curEnemies &lt; self.m_maxEnemies)
+    self.m_stageTime = 0;
+    
+    // Display Scores
+    if(self.m_showScores == false)
     {
-        var r = irandom_range(1,self.m_enemyTypes);
-        SpawnShark(self.m_spawnRadius,r);
-        self.m_curSpawnRate = irandom_range(self.m_spawnRateMin,self.m_spawnRateMax);
-        self.m_curEnemies++;
+        self.m_showScores = true;
+        checkBestPlayer();
     }
+    if(self.m_fadeRadius &lt; room_width)
+    {
+        self.m_fadeRadius += self.m_fadeRadiusInc;
+        if(self.m_fadeRadius&gt;=room_width/2)
+        {
+            self.m_popupAlpha += self.m_popupAlphaInc;
+        }
+    }
+    self.m_fadeAlpha += self.m_fadeAlphaInc;
+    
+    if(self.m_popupAlpha&gt;0.5)
+    {
+        if((g_playerManager.m_players[0]!= INVALID_PLAYER)&amp;&amp;(g_playerManager.m_players[0].m_score&gt;0))
+        {
+            self.m_cash++;
+            g_playerManager.m_players[0].m_score--;
+        }
+        else
+        {
+            self.m_scoreOver[0] = true;
+        }
+        if((g_playerManager.m_players[1]!= INVALID_PLAYER)&amp;&amp;(g_playerManager.m_players[1].m_score&gt;0))
+        {
+            self.m_cash++;
+            g_playerManager.m_players[1].m_score--;
+        }
+        else
+        {
+            self.m_scoreOver[1] = true;
+        }
+        if((g_playerManager.m_players[2]!= INVALID_PLAYER)&amp;&amp;(g_playerManager.m_players[2].m_score&gt;0))
+        {
+            self.m_cash++;
+            g_playerManager.m_players[2].m_score--;
+        }
+        else
+        {
+            self.m_scoreOver[2] = true;
+        }
+        if((g_playerManager.m_players[3]!= INVALID_PLAYER)&amp;&amp;(g_playerManager.m_players[3].m_score&gt;0))
+        {
+            self.m_cash++;
+            g_playerManager.m_players[3].m_score--;
+        }
+        else
+        {
+            self.m_scoreOver[3] = true;
+        }
+        if((self.m_scoreOver[0]==true)&amp;&amp;(self.m_scoreOver[1]==true)&amp;&amp;(self.m_scoreOver[2]==true)&amp;&amp;(self.m_scoreOver[3]==true))
+        {
+            self.m_isScoreOver = true;
+        }
+    
+        if(self.m_isScoreOver == true)
+        {
+            self.m_nextAlpha += self.m_nextAlphaInc;
+            self.m_capTextAngle += self.m_capTextAngleInc;
+            if(abs(self.m_capTextAngle)&gt;15)
+            {
+                self.m_capTextAngleInc *= -1;   
+            }
+            if(g_gameManager.m_bestPlayer.m_controller == KEYBOARD)
+            {
+                if(keyboard_check_pressed(vk_space))
+                {
+                    g_playerManager.m_money += self.m_cash;
+                    room_goto(r_shop);
+                }
+            }
+            else
+            {
+                if(gamepad_button_check_pressed(g_gameManager.m_bestPlayer.m_controller,gp_face1))
+                {
+                    g_playerManager.m_money += self.m_cash;
+                    room_goto(r_shop);
+                }
+            }
+        }
+        else
+        {
+            if(g_gameManager.m_bestPlayer.m_controller == KEYBOARD)
+            {
+                if(keyboard_check_pressed(vk_space))
+                {
+                    AddScores(self);
+                }
+            }
+            else
+            {
+                if(gamepad_button_check_pressed(g_gameManager.m_bestPlayer.m_controller,gp_face1))
+                {
+                    AddScores(self);
+                }
+            }
+        }
+    }
+    // end of the level.
+    //room_goto(r_win);
 }
 else
-{
-    self.m_curSpawnRate--;
-}
-
-// check if we finish the stage.
-self.m_stageTime -= delta_time / 1000;
-if(self.m_stageTime &lt; 0)
-{
-    g_gameManager.m_best_player = g_playerManager.m_players[0];
-    
-    // end of the level.
-    room_goto(r_shop);
+{    
+    // Update enemies generation
+    if(self.m_curSpawnRate &lt;=0)
+    {
+        if(self.m_curEnemies &lt; self.m_maxEnemies)
+        {
+            var r = irandom_range(1,self.m_enemyTypes);
+            SpawnShark(self.m_spawnRadius,r);
+            self.m_curSpawnRate = irandom_range(self.m_spawnRateMin,self.m_spawnRateMax);
+            self.m_curEnemies++;
+        }
+    }
+    else
+    {
+        self.m_curSpawnRate--;
+    }
 }
 
 </string>
@@ -143,6 +281,77 @@ if(self.m_stageTime &lt; 0)
             <kind>1</kind>
             <string>draw_set_halign(fa_center);
 draw_text(512, 15, string(floor(m_stageTime / 1000)));
+
+
+// Drawing total cash at the end of current level
+if(self.m_showScores == true)
+{
+    draw_set_alpha(self.m_fadeAlpha);
+    draw_circle_color(room_width/2,room_height/2,self.m_fadeRadius,self.m_fadeCol1,m_fadeCol2,false);
+    if(self.m_fadeRadius &gt;= room_width/2)
+    {
+        draw_sprite_ext(s_popup_totalcash,0,0,0,1,1,0,c_white,self.m_popupAlpha);
+        draw_set_alpha(self.m_popupAlpha);
+        draw_text(room_width/2,room_height/2,string(self.m_cash));
+    }
+    draw_set_alpha(1);
+    
+    if(self.m_isScoreOver == true)
+    {
+        if(g_gameManager.m_bestPlayer.m_controller == KEYBOARD)
+        {
+            draw_sprite_ext(s_keyboard_next,0,(room_width-sprite_get_width(s_keyboard_next))/2,room_height/2+sprite_get_height(s_keyboard_next),1,1,0,c_white,abs(sin(self.m_nextAlpha)));
+        }
+        else
+        {
+            draw_sprite_ext(s_button_a,0,(room_width-sprite_get_width(s_button_a))/2,room_height/2+sprite_get_height(s_button_a),1,1,0,c_white,abs(sin(self.m_nextAlpha)));
+        }
+        
+        // New Captain!
+        var cX, cY;
+        
+        switch(g_gameManager.m_bestPlayer.m_id)
+        {
+            case 1:
+            {
+                break;
+            }
+            default:
+            {
+                cX = self.m_hudP1X + string_width(self.m_capText)/2;
+                cY = self.m_hudP1Y + string_height(self.m_capText)+sprite_get_height(s_hud_p1);
+                break;
+            }
+        }
+        draw_set_color(c_red);
+        draw_set_alpha(1);
+        draw_text_ext_transformed(cX,cY,string(self.m_capText),10,room_width,1,1,self.m_capTextAngle);
+        draw_set_color(c_black);
+    }
+}
+
+// Drawing Players HUD
+//draw_set_font(f_scoreFont);
+if(g_playerManager.m_players[0] != INVALID_PLAYER)
+{
+    draw_sprite(s_hud_p1,0,self.m_hudP1X,self.m_hudP1Y);
+    draw_text(self.m_hudP1X+120,self.m_hudP1Y+20,g_playerManager.m_players[0].m_score);
+}
+if(g_playerManager.m_players[1] != INVALID_PLAYER)
+{
+    draw_sprite(s_hud_p2,0,self.m_hudP2X,self.m_hudP2Y);
+    draw_text(self.m_hudP2X+5+string_width(string(g_playerManager.m_players[1].m_score)),self.m_hudP2Y+20,g_playerManager.m_players[1].m_score);
+}
+if(g_playerManager.m_players[2] != INVALID_PLAYER)
+{
+    draw_sprite(s_hud_p3,0,self.m_hudP3X,self.m_hudP3Y);
+    draw_text(self.m_hudP3X+120,self.m_hudP3Y+65,g_playerManager.m_players[2].m_score);
+}
+if(g_playerManager.m_players[3] != INVALID_PLAYER)
+{
+    draw_sprite(s_hud_p4,0,self.m_hudP4X,self.m_hudP4Y);
+    draw_text(self.m_hudP4X+5+string_width(string(g_playerManager.m_players[3].m_score)),self.m_hudP4Y+65,g_playerManager.m_players[3].m_score);
+}
 </string>
           </argument>
         </arguments>

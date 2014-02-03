@@ -37,7 +37,7 @@ self.m_current_selection = 0; // item selection.
 // popup answer: yes=0 no=1
 self.m_popup_answer = 1;
 
-self.m_player = g_gameManager.m_best_player;
+self.m_player = g_gameManager.m_bestPlayer;
 
 // Shop State.
 self.WELCOME    = 0;

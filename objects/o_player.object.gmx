@@ -28,7 +28,7 @@
             <string>/// Player Constructor
 
 self.m_controller   = INVALID_GAMEPAD;
-self.m_score        = 0;
+self.m_score        = 500;
 self.m_eyebrow      = INVALID_EYEBROW;  ///&lt; eyebrow index.
 self.m_drone        = 0;
 self.m_id           = INVALID_PLAYER;

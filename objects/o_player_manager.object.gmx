@@ -28,6 +28,9 @@
             <string>self.m_state = "created";
 self.m_money = 0;
 self.m_nbPlayers = 0;
+self.m_bestPlayer = INVALID_PLAYER;
+self.m_teamScore = 0;
+
 self.m_players[0]   = INVALID_PLAYER;
 self.m_players[1]   = INVALID_PLAYER;
 self.m_players[2]   = INVALID_PLAYER;

@@ -18,4 +18,11 @@ else
 
 g_playerManager.m_players[player.m_id] = player;
 g_playerManager.m_nbPlayers++;
+
+if(room != r_selection)
+{
+    // TO DO: assigning a random (and not yet used) color to the new Player
+    player.m_eyebrow = irandom_range(0,7);
+}
+
 return player;
